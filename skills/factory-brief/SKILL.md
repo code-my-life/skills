@@ -136,7 +136,7 @@ Choix du harnais : **imposé par les labels GitHub**, lus dans ta carte (`harnes
 
 La revue n'est pas une carte : l'implémenteur appelle `kanban_request_review` **sans reviewer** sur sa propre carte (`kanban.review_dispatch` est coupé : aucun agent ne relit). Ne crée jamais de carte « review ». `factory-gate` est la gate scriptée de la factory (ADR 0015) : elle lit **ton brief** pour juger la PR, sans LLM. Elle exige :
 - `base_commit` et `branch_name` dans la section « Base » ;
-- le test fail-first nommé (section « Test fail-first », champ « nom », le nom exact du cas), sauf pour une PR de tests (`test_only: true`), jugée par le rejeu des sabotages de l'auteur.
+- le test fail-first nommé (section « Test fail-first », champ « nom », le nom exact du cas), sauf pour une PR de tests (`test_only: true`), jugée par le rejeu des sabotages de l'auteur, et pour les types qui ont leur propre preuve (maintenance, documentation, skill : tableau de la section 1bis).
 
 Sans ces champs, `coordinator-guard` refuse la carte ; un brief que la gate ne peut pas lire lui fait bloquer la carte pour Clément.
 

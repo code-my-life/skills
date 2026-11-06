@@ -52,6 +52,11 @@ Le type du brief fixe la preuve :
   refuse sinon), la suite complète reste verte ;
 - **documentation** : aucun test ; tu ne touches **que des documents** (`*.md`, `docs/`), la gate refuse tout autre
   fichier.
+- **skill** : aucun test fail-first ; dans le fichier nommé par le brief, tu remplaces le texte d'origine par le texte
+  proposé, tels quels, et rien d'autre dans ce fichier (une skill nouvelle : un fichier nouveau qui porte le texte
+  proposé). Tu montes la version de `package.json`, celle du brief : `patch`, ou `minor` pour une skill nouvelle. La
+  gate compare le fichier à sa base avec ce seul remplacement, et la CI du dépôt fait ses contrôles (tests, catalogue,
+  copies identiques à leur amont).
 
 ## 2. Correctif minimal
 
@@ -102,7 +107,7 @@ La gate scriptée (ou Clément sur la PR) t'a renvoyé la carte. Le dernier comm
 4. **Tests nommés** : chaque test de la section Tests de l'issue (recopiée à la fin du brief) existe dans le fichier indiqué, sous son nom exact, et vérifie ce que son critère demande ;
 5. **CI** : tous les checks de la tête verts ;
 6. **Diff** : les règles du pre-commit sur tout le diff de la PR ;
-7. **Fail-first** : le test **nommé par le brief** (nom exact) rouge sur la base avec tes tests, vert sur ta tête, trois essais ; PR de tests : tes sabotages rejoués ; maintenance : **Invariance**, aucun test existant modifié ni retiré ; documentation : **Documentation**, seuls des documents changent ;
+7. **Fail-first** : le test **nommé par le brief** (nom exact) rouge sur la base avec tes tests, vert sur ta tête, trois essais ; PR de tests : tes sabotages rejoués ; maintenance : **Invariance**, aucun test existant modifié ni retiré ; documentation : **Documentation**, seuls des documents changent ; skill : **Skill**, le fichier de la skill est sa base avec le texte d'origine remplacé par le texte proposé, et rien d'autre ;
 8. **Build hors ligne** : le build du projet sans réseau ;
 9. **Couverture du diff** : chaque ligne exécutable que tu ajoutes ou modifies est exécutée par au moins un test.
 

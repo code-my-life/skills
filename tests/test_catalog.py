@@ -228,6 +228,13 @@ class VraiCatalogueTest(unittest.TestCase):
         self.assertIn("l'impl va à `scribe`", row)
         self.assertIn("`scribe` pour docs, renommages mécaniques et issues Skill", text)
 
+    def test_factory_author_proof_et_la_gate_du_brief_decrivent_la_preuve_skill(self):
+        proof = (ROOT / "skills" / "factory-author-proof" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("- **skill** : aucun test fail-first", proof)
+        self.assertIn("skill : **Skill**, le fichier de la skill est sa base", proof)
+        brief = (ROOT / "skills" / "factory-brief" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("pour les types qui ont leur propre preuve (maintenance, documentation, skill", brief)
+
     def test_la_borne_de_playwright_cli_ecarte_l_ancien_paquet(self):
         rules = json.loads((ROOT / "renovate.json").read_text(encoding="utf-8")).get("packageRules") or []
         bound = [r["allowedVersions"] for r in rules if r.get("matchDepNames") == ["microsoft/playwright-cli"]]
