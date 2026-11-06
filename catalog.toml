@@ -531,7 +531,7 @@ consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
 
 [skills.playwright-cli.amont]
 depot = "microsoft/playwright-cli"
-ref = "v0.1.23"
+ref = "v0.5.2"
 chemin = "skills/playwright-cli"
 
 [skills.write-swift]
