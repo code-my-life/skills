@@ -1,0 +1,24 @@
+name: Tests
+
+# Les tests du catalogue et le contrôle du catalogue lui-même, à chaque push sur main et sur chaque pull request.
+# Bibliothèque standard seulement : le Python du runner suffit.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests du catalogue
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Catalogue
+        run: python3 scripts/catalogue.py verifier

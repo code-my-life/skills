@@ -1,0 +1,33 @@
+name: Amont
+
+# Chaque copie externe est identique à son amont figé dans catalog.toml. Sur une pull request qui touche le catalogue
+# ou une skill, ce job le vérifie et montre le diff de chaque copie qui s'en écarte : quand Renovate fait monter une
+# version, la copie se refait par « python3 scripts/catalogue.py amont --recopier <nom> », poussé sur la même PR. Pour
+# une skill adaptée dont le commit amont noté monte, il liste le diff amont depuis ce commit, à reprendre à la main,
+# dans le résumé du job. Le jeton reste en lecture seule.
+on:
+  pull_request:
+    paths:
+      - catalog.toml
+      - "skills/**"
+
+permissions:
+  contents: read
+
+jobs:
+  amont:
+    name: Copies identiques à leur amont
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Comparer chaque copie à son amont figé
+        run: python3 scripts/catalogue.py amont
+      - name: Skills adaptées, diff amont depuis le commit noté
+        if: always()
+        env:
+          BASE: ${{ github.base_ref }}
+        run: |
+          git fetch -q --depth 1 origin "$BASE"
+          python3 scripts/catalogue.py adaptees --depuis FETCH_HEAD | tee -a "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Les versions amont figées de catalog.toml (hermes-software-factory#37). Une PR par montée de version : le workflow « Amont » montre le diff de la copie, à refaire par scripts/catalogue.py amont --recopier.",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["custom.regex"],
+  "dependencyDashboard": false,
+  "labels": ["type:maintenance"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Un dépôt amont figé sur un tag : depot puis ref.",
+      "managerFilePatterns": ["/^catalog\\.toml$/"],
+      "matchStrings": ["depot = \"(?<depName>[^\"]+)\"\\nref = \"(?<currentValue>v?\\d[^\"]*)\""],
+      "datasourceTemplate": "github-tags"
+    },
+    {
+      "customType": "regex",
+      "description": "Un dépôt amont figé sur un commit de sa branche : depot, ref, puis branche.",
+      "managerFilePatterns": ["/^catalog\\.toml$/"],
+      "matchStrings": ["depot = \"(?<depName>[^\"]+)\"\\nref = \"(?<currentDigest>[0-9a-f]{40})\"\\nbranche = \"(?<currentValue>[^\"]+)\""],
+      "datasourceTemplate": "git-refs",
+      "packageNameTemplate": "https://github.com/{{{depName}}}"
+    },
+    {
+      "customType": "regex",
+      "description": "Un paquet npm : paquet puis version.",
+      "managerFilePatterns": ["/^catalog\\.toml$/"],
+      "matchStrings": ["paquet = \"(?<depName>[^\"]+)\"\\nversion = \"(?<currentValue>[^\"]+)\""],
+      "datasourceTemplate": "npm"
+    }
+  ]
+}

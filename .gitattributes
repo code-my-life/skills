@@ -1,0 +1,31 @@
+# Généré par scripts/catalogue.py attributs --ecrire : une copie externe reste identique à son amont,
+# espaces de fin de ligne compris. C'est du code tiers (linguist-vendored) : ni git ni les règles
+# d'hygiène de la factory ne le jugent comme du code écrit ici.
+skills/animate/** -whitespace linguist-vendored
+skills/animate-expo/** -whitespace linguist-vendored
+skills/animation-performance/** -whitespace linguist-vendored
+skills/animation-vocabulary/** -whitespace linguist-vendored
+skills/apple-design/** -whitespace linguist-vendored
+skills/ask-sonner/** -whitespace linguist-vendored
+skills/break-ui/** -whitespace linguist-vendored
+skills/check-pr/** -whitespace linguist-vendored
+skills/cli-review/** -whitespace linguist-vendored
+skills/emil-design-eng/** -whitespace linguist-vendored
+skills/figma/** -whitespace linguist-vendored
+skills/find-animation-opportunities/** -whitespace linguist-vendored
+skills/hyperframes/** -whitespace linguist-vendored
+skills/hyperframes-cli/** -whitespace linguist-vendored
+skills/hyperframes-registry/** -whitespace linguist-vendored
+skills/improve-animations/** -whitespace linguist-vendored
+skills/media-use/** -whitespace linguist-vendored
+skills/mobile-native/** -whitespace linguist-vendored
+skills/motion/** -whitespace linguist-vendored
+skills/pick-ui-library/** -whitespace linguist-vendored
+skills/playwright-cli/** -whitespace linguist-vendored
+skills/prototype/** -whitespace linguist-vendored
+skills/remotion-to-hyperframes/** -whitespace linguist-vendored
+skills/reverse-any-video/** -whitespace linguist-vendored
+skills/review-animations/** -whitespace linguist-vendored
+skills/slideshow/** -whitespace linguist-vendored
+skills/style-sampling/** -whitespace linguist-vendored
+skills/write-swift/** -whitespace linguist-vendored
