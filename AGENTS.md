@@ -30,6 +30,9 @@ La base de connaissance de Code My Life : toutes les skills de ses agents, au fo
   --recopier <nom>`), avec le `LICENSE` de son amont dans son dossier. Une skill adaptée nomme son amont dans
   `d_apres` : `depot`, `ref` (un tag, ou un commit de 40 caractères suivi de `branche`, que Renovate sait suivre) et
   `chemin`, le dossier amont dont le diff se liste quand `ref` monte.
+- Une skill change par une issue Skill (hermes-software-factory#39, ADR 0027) : le texte d'origine copié tel quel
+  depuis main, et le texte proposé. La PR monte la version de `package.json` : `patch` pour un texte changé, `minor`
+  pour une skill nouvelle. Sa fusion publie la release (workflow « Release »), puis la factory installe chaque agent.
 - Les commentaires du code sont en anglais. Aucun nom de personne dans un commentaire ou un titre de test.
 - Les décisions qui touchent ce dépôt vivent dans hermes-software-factory : l'issue #36 et ses sous-issues.
 
@@ -49,4 +52,5 @@ Aucun.
 - `catalog.toml`, `scripts/catalogue.py`, `.github/workflows/tests.yml` et `.github/workflows/amont.yml` : le
   catalogue et ses contrôles.
 - `renovate.json` : les montées de version amont.
+- `package.json` et `.github/workflows/release.yml` : la version du dépôt et sa release.
 - `.github/CODEOWNERS` : la revue obligatoire du propriétaire.

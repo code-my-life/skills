@@ -211,6 +211,30 @@ class VraiCatalogueTest(unittest.TestCase):
     def test_le_catalogue_du_depot_est_conforme(self):
         self.assertEqual(cat.problems(ROOT), [])
 
+    def test_le_depot_porte_sa_version_et_publie_sa_release_quand_elle_change(self):
+        package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+        self.assertRegex(package["version"], r"^\d+\.\d+\.\d+$")
+        self.assertIs(package["private"], True)
+        workflow = (ROOT / ".github" / "workflows" / "release.yml").read_text(encoding="utf-8")
+        self.assertIn("    branches: [main]\n    paths: [package.json]", workflow)
+        self.assertIn('if gh release view "$v"', workflow)
+        self.assertIn('gh release create "$v" --target "$GITHUB_SHA"', workflow)
+
+    def test_factory_brief_connait_le_type_skill_et_l_envoie_a_scribe(self):
+        text = (ROOT / "skills" / "factory-brief" / "SKILL.md").read_text(encoding="utf-8")
+        row = next(line for line in text.splitlines() if line.startswith("| skill |"))
+        self.assertIn("`skill/<n>-<sujet>`", row)
+        self.assertIn("patch (texte changé), minor (skill nouvelle", row)
+        self.assertIn("l'impl va à `scribe`", row)
+        self.assertIn("`scribe` pour docs, renommages mécaniques et issues Skill", text)
+
+    def test_factory_author_proof_et_la_gate_du_brief_decrivent_la_preuve_skill(self):
+        proof = (ROOT / "skills" / "factory-author-proof" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("- **skill** : aucun test fail-first", proof)
+        self.assertIn("skill : **Skill**, le fichier de la skill est sa base", proof)
+        brief = (ROOT / "skills" / "factory-brief" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("pour les types qui ont leur propre preuve (maintenance, documentation, skill", brief)
+
     def test_la_borne_de_playwright_cli_ecarte_l_ancien_paquet(self):
         rules = json.loads((ROOT / "renovate.json").read_text(encoding="utf-8")).get("packageRules") or []
         bound = [r["allowedVersions"] for r in rules if r.get("matchDepNames") == ["microsoft/playwright-cli"]]

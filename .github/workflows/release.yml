@@ -1,0 +1,31 @@
+name: Release
+
+# Quand la version de package.json change sur main (montée incluse dans la PR, hermes-software-factory#39), publie la
+# release vX.Y.Z avec ses notes générées : gh release create pose aussi le tag. Une version déjà publiée ne l'est pas
+# une seconde fois. Le jeton du workflow suffit : aucun autre workflow n'attend ce tag.
+on:
+  push:
+    branches: [main]
+    paths: [package.json]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release de la version
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Publier la release si la version n'en a pas encore
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v="v$(python3 -c 'import json; print(json.load(open("package.json"))["version"])')"
+          if gh release view "$v" >/dev/null 2>&1; then
+            echo "release $v déjà publiée, rien à faire"
+          else
+            gh release create "$v" --target "$GITHUB_SHA" --title "$v" --generate-notes
+          fi
