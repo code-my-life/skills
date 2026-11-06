@@ -5,6 +5,7 @@ Standard library only, like scripts/catalogue.py.
 """
 from __future__ import annotations
 
+import fnmatch
 import importlib.util
 import json
 import re
@@ -128,10 +129,26 @@ class CatalogueTest(unittest.TestCase):
             '["operateur", "lane-claude", "hermes:coder"]', '["operateur", "lane-opencode"]')
         self.catalog(MAISON + EXTERNE + manual)
         rule = cat.opencode_rule(cat.load(self.root))
-        self.assertEqual(rule, {"*": "allow", "maison-auto": "deny", "procedure": "deny"})
+        self.assertEqual(rule, {"*": "deny", "copie-externe": "allow"})
         out = subprocess.run([sys.executable, str(ROOT / "scripts" / "catalogue.py"), "opencode"],
                              capture_output=True, text=True, check=True).stdout
         self.assertEqual(json.loads(out), cat.opencode_rule(cat.load()))
+
+    def test_opencode_refuse_toute_skill_qui_n_est_pas_a_sa_lane(self):
+        self.skill("maison-auto")
+        self.skill("copie-externe", license=True)
+        self.skill("procedure", manual=True)
+        manual = MAISON.replace("maison-auto", "procedure").replace('"auto"', '"manuel"').replace(
+            '["operateur", "lane-claude", "hermes:coder"]', '["operateur", "lane-opencode"]')
+        self.catalog(MAISON + EXTERNE + manual)
+        rule = cat.opencode_rule(cat.load(self.root))
+
+        def seen(name):  # as OpenCode reads permission.skill: the last matching pattern wins
+            return [action for pattern, action in rule.items() if fnmatch.fnmatchcase(name, pattern)][-1] == "allow"
+        self.assertTrue(seen("copie-externe"))
+        self.assertFalse(seen("maison-auto"))
+        self.assertFalse(seen("procedure"))
+        self.assertFalse(seen("jvogn-report-geo"))  # synced from claude.ai, unknown to the catalog
 
     def test_une_copie_externe_garde_ses_espaces_et_le_gitattributes_le_dit(self):
         self.skill("copie-externe", license=True)
@@ -187,6 +204,17 @@ class VraiCatalogueTest(unittest.TestCase):
     def test_le_catalogue_du_depot_est_conforme(self):
         self.assertEqual(cat.problems(ROOT), [])
 
+    def test_la_borne_de_playwright_cli_ecarte_l_ancien_paquet(self):
+        rules = json.loads((ROOT / "renovate.json").read_text(encoding="utf-8")).get("packageRules") or []
+        bound = [r["allowedVersions"] for r in rules if r.get("matchDepNames") == ["microsoft/playwright-cli"]]
+        self.assertEqual(bound, ["<0.100.0"])
+
+        def below(tag):  # the semver range « <0.100.0 », on tags such as v0.1.23
+            return tuple(int(x) for x in tag.lstrip("v").split(".")) < (0, 100, 0)
+        self.assertTrue(below(cat.load()["playwright-cli"]["amont"]["ref"]))
+        self.assertTrue(below("v0.1.24"))
+        self.assertFalse(below("v0.180.0"))
+
     def test_chaque_version_figee_du_catalogue_a_un_seul_gestionnaire_renovate(self):
         config = json.loads((ROOT / "renovate.json").read_text(encoding="utf-8"))
         text = (ROOT / "catalog.toml").read_text(encoding="utf-8")
@@ -210,6 +238,10 @@ class VraiCatalogueTest(unittest.TestCase):
         self.assertNotIn("design-taste-frontend", cat.names_for(skills, "operateur", "copiees"))
         self.assertIn("factory-nouveau-depot", cat.manual(skills))
         self.assertNotIn("factory-nouveau-depot", cat.names_for(skills, "lane-claude"))
+        # Emil Kowalski's skills leave the root profile of Hermès only, until the owner decides (#5).
+        self.assertNotIn("animate", cat.names_for(skills, "hermes:default"))
+        self.assertIn("animate", cat.names_for(skills, "lane-opencode"))
+        self.assertIn("animate", cat.names_for(skills, "operateur"))
         # The root profile of Hermès: no manual skill, since Hermès has no manual mode.
         self.assertIn("hyperframes", cat.names_for(skills, "hermes:default"))
         self.assertEqual(set(cat.names_for(skills, "hermes:default")) & set(cat.manual(skills)), set())
