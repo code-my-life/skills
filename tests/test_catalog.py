@@ -200,6 +200,13 @@ class CatalogueTest(unittest.TestCase):
         self.assertTrue(any("pas le nom du dossier" in p for p in self.catalog(MAISON)))
 
 
+# The 39 tags of microsoft/playwright-cli on 2026-11-06 (git ls-remote): its former npm package playwright-cli
+# (2020 and 2021), and its current one @playwright/cli, from which the skill is copied (skills#9).
+PLAYWRIGHT_CLI_FORMER = ["v0.4.3", "v0.4.4", "v0.5.0", "v0.5.1", "v0.5.2", "v0.150.0", "v0.151.0", "v0.152.0",
+                         "v0.161.0", "v0.162.0", "v0.162.1", "v0.170.0", "v0.171.0", "v0.180.0"]
+PLAYWRIGHT_CLI_CURRENT = ["0.1.7", "v0.0.64", *(f"v0.1.{n}" for n in range(24) if n != 7)]
+
+
 class VraiCatalogueTest(unittest.TestCase):
     def test_le_catalogue_du_depot_est_conforme(self):
         self.assertEqual(cat.problems(ROOT), [])
@@ -207,13 +214,18 @@ class VraiCatalogueTest(unittest.TestCase):
     def test_la_borne_de_playwright_cli_ecarte_l_ancien_paquet(self):
         rules = json.loads((ROOT / "renovate.json").read_text(encoding="utf-8")).get("packageRules") or []
         bound = [r["allowedVersions"] for r in rules if r.get("matchDepNames") == ["microsoft/playwright-cli"]]
-        self.assertEqual(bound, ["<0.100.0"])
+        self.assertEqual(len(bound), 1)
+        self.assertTrue(bound[0].startswith("!/") and bound[0].endswith("/"), bound)
+        refused = re.compile(bound[0][2:-1])
 
-        def below(tag):  # the semver range « <0.100.0 », on tags such as v0.1.23
-            return tuple(int(x) for x in tag.lstrip("v").split(".")) < (0, 100, 0)
-        self.assertTrue(below(cat.load()["playwright-cli"]["amont"]["ref"]))
-        self.assertTrue(below("v0.1.24"))
-        self.assertFalse(below("v0.180.0"))
+        def allowed(tag):  # as Renovate reads « !/…/ » : a tag that matches the expression is refused
+            return not refused.search(tag)
+        self.assertTrue(allowed(cat.load()["playwright-cli"]["amont"]["ref"]))
+        for tag in PLAYWRIGHT_CLI_CURRENT + ["v0.1.24", "v0.2.0", "v0.4.0", "v0.4.5", "v0.5.3", "v0.150.1", "v0.162.2",
+                                             "v0.181.0"]:
+            self.assertTrue(allowed(tag), tag)
+        for tag in PLAYWRIGHT_CLI_FORMER:
+            self.assertFalse(allowed(tag), tag)
 
     def test_chaque_version_figee_du_catalogue_a_un_seul_gestionnaire_renovate(self):
         config = json.loads((ROOT / "renovate.json").read_text(encoding="utf-8"))
