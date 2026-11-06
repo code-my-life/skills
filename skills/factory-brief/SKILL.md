@@ -37,6 +37,7 @@ critères numérotés C1, C2…, des tests nommés, la maquette d'une Interface.
 | tests | `test/<n>-<sujet>` | none | sabotages rejoués (ADR 0013) | `test_only: true`, les sabotages attendus |
 | maintenance | `chore/<n>-<sujet>` | none | aucun test existant modifié ni retiré | l'invariant ; pas de section « Test fail-first » |
 | documentation | `docs/<n>-<sujet>` | none | seuls des documents changent | les documents ; pas de section « Test fail-first » |
+| skill | `skill/<n>-<sujet>` | patch (texte changé), minor (skill nouvelle : texte d'origine « aucun ») | le fichier de la skill est sa base, avec le texte d'origine remplacé une fois par le texte proposé, et rien d'autre | le fichier, le texte d'origine et le texte proposé, recopiés tels quels ; pas de section « Test fail-first » ; l'impl va à `scribe` |
 | diagnostic | aucune | none | pas de PR | pas de carte impl ni release : une carte « diagnostic <repo>#<n> » pour `coder`, lecture seule, qui livre la cause localisée et un test rouge proposé en commentaire |
 
 Dans le brief :
@@ -129,7 +130,7 @@ Pour une issue à plusieurs zones indépendantes : une carte impl par zone, chac
 Choix du harnais : **imposé par les labels GitHub**, lus dans ta carte (`harness`, `claude_model`).
 - `claude_model` renseigné → **brief et implémentation sur ce modèle** : impl `assignee="coder-claude"`. Tu recopies `claude_model: <identifiant exact>` en tête du corps de CHAQUE carte fille : chaque lane lance `claude -p --model <cet identifiant>`, jamais un autre. La revue et la release restent des scripts, sans modèle.
 - `harness: coder-opencode` (label `opencode`) → impl `assignee="coder-opencode"`, une lane OpenCode. Claude n'est utilisé nulle part.
-- Pas de `claude_model` ni de harnais imposé → **Claude n'est utilisé nulle part** pour cette issue : `coder` (Hermès natif) par défaut, `coder-opencode` pour un correctif ciblé bien spécifié, `scribe` pour docs et renommages mécaniques. Ne choisis jamais `coder-claude` de toi-même.
+- Pas de `claude_model` ni de harnais imposé → **Claude n'est utilisé nulle part** pour cette issue : `coder` (Hermès natif) par défaut, `coder-opencode` pour un correctif ciblé bien spécifié, `scribe` pour docs, renommages mécaniques et issues Skill (un changement de texte). Ne choisis jamais `coder-claude` de toi-même.
 - coordinator-guard refuse une carte impl assignée à un autre profil que le harnais imposé par les labels (ADR 0018).
 - Note le harnais et le modèle dans `metadata.harness` de ton handoff.
 
