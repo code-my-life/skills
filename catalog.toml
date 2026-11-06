@@ -1,0 +1,547 @@
+# Catalogue des skills de Code My Life (hermes-software-factory#37, skills#3).
+#
+# origine : maison (écrite ici), amont (copie figée d'un autre dépôt, table amont), npm (paquet npm, table npm) ou
+#   projet (skill propre à un autre dépôt de code-my-life, table projet). copie = false : la skill n'est que déclarée,
+#   et s'installe depuis son amont.
+# consommateurs : operateur (séances de Claude Code), lane-claude et lane-opencode (lanes de la factory),
+#   hermes:<profil>, projet:<propriétaire/dépôt>. Claude Code et OpenCode lisent ~/.claude/skills : une skill de
+#   l'opérateur qui se déclenche seule y est vue aussi par les lanes Claude Code.
+# declenchement : manuel (jamais par le modèle), auto (le modèle la prend), carte (préchargée par la carte).
+# Renovate lit les versions figées : garder les lignes depot, ref (puis branche) et paquet, version l'une après
+# l'autre.
+
+# La software factory
+
+[skills.factory-author-proof]
+famille = "factory"
+role = "Preuve d'auteur d'une carte : test rouge sur la base, correctif minimal, test vert, preuves sur disque."
+origine = "maison"
+licence = "MIT"
+declenchement = "carte"
+consommateurs = ["hermes:coder", "hermes:coder-claude", "hermes:coder-opencode", "hermes:scribe"]
+
+[skills.factory-brief]
+famille = "factory"
+role = "Changer une issue en brief exécutable et en cartes Kanban, pour le coordinateur."
+origine = "maison"
+licence = "MIT"
+declenchement = "carte"
+consommateurs = ["hermes:coordinator", "hermes:coordinator-claude"]
+
+[skills.factory-cli-lane]
+famille = "factory"
+role = "Déléguer l'implémentation à un CLI (claude -p, opencode run), Hermès gardant la carte."
+origine = "maison"
+licence = "MIT"
+declenchement = "carte"
+consommateurs = ["hermes:coordinator-claude", "hermes:coder-claude", "hermes:coder-opencode"]
+
+[skills.factory-onboard]
+famille = "factory"
+role = "Préparer un dépôt pour la factory : clone, projet Hermès, AGENTS.md, outils."
+origine = "maison"
+licence = "MIT"
+declenchement = "carte"
+consommateurs = ["hermes:tool-setup"]
+
+[skills.factory-issue]
+famille = "factory"
+role = "Rédiger une issue au standard de la factory (types d'issues, ADR 0017), gril en QCM."
+origine = "maison"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude"]
+
+[skills.factory-nouveau-depot]
+famille = "factory"
+role = "Créer un dépôt de code-my-life et le brancher sur la factory, du dépôt modèle au contrôle final."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+
+# Animation et mouvement
+
+[skills.motion-graph]
+famille = "animation"
+role = "Graphe animé d'une interface React (ligne d'usine, flux) avec Motion et Primer."
+origine = "maison"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:coder", "hermes:coder-claude", "hermes:coder-opencode"]
+
+[skills.motion]
+famille = "animation"
+role = "Bonnes pratiques de Motion et des animations CSS, recherche dans sa doc, audits de performance."
+origine = "npm"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:coder", "hermes:coder-claude", "hermes:coder-opencode"]
+
+[skills.motion.npm]
+paquet = "motion-ai"
+version = "14.2.0"
+chemin = "content/skills/motion"
+
+[skills.animate]
+famille = "animation"
+role = "Construire une animation en prenant les décisions dans le bon ordre, jusqu'au code."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.animate.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/animate"
+
+[skills.animate-expo]
+famille = "animation"
+role = "Animations React Native et Expo : Reanimated, gestes, transitions, retours haptiques."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.animate-expo.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/animate-expo"
+
+[skills.animation-performance]
+famille = "animation"
+role = "Garder les animations web dans le budget d'une image, et trouver ce qui saccade."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.animation-performance.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/animation-performance"
+
+[skills.animation-vocabulary]
+famille = "animation"
+role = "Donner le nom exact d'un effet d'animation décrit avec des mots vagues."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.animation-vocabulary.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/animation-vocabulary"
+
+[skills.apple-design]
+famille = "animation"
+role = "Le mouvement fluide et physique d'Apple, adapté au web : ressorts, gestes, matières."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.apple-design.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/apple-design"
+
+[skills.find-animation-opportunities]
+famille = "animation"
+role = "Trouver les endroits d'une interface où une animation servirait, et écarter les autres."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.find-animation-opportunities.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/find-animation-opportunities"
+
+[skills.improve-animations]
+famille = "animation"
+role = "Auditer les animations d'une base de code et écrire les plans de correction."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.improve-animations.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/improve-animations"
+
+[skills.review-animations]
+famille = "animation"
+role = "Relire des animations avec un œil exigeant sur le rendu, à la demande."
+origine = "amont"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+
+[skills.review-animations.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/review-animations"
+
+# Interface et design
+
+[skills.emil-design-eng]
+famille = "interface"
+role = "La finition d'une interface selon Emil Kowalski : composants, animations, détails invisibles."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.emil-design-eng.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/emil-design-eng"
+
+[skills.break-ui]
+famille = "interface"
+role = "Casser une interface avec des données extrêmes, et rendre chaque défaut avec sa correction."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.break-ui.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/break-ui"
+
+[skills.mobile-native]
+famille = "interface"
+role = "Faire qu'une application web se sente native sur un téléphone, réglage par réglage."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.mobile-native.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/mobile-native"
+
+[skills.ask-sonner]
+famille = "interface"
+role = "Guide de Sonner, la bibliothèque de toasts React : mise en place, style, dépannage."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.ask-sonner.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/ask-sonner"
+
+[skills.pick-ui-library]
+famille = "interface"
+role = "Choisir une bibliothèque d'interface dans une liste vérifiée, à la demande."
+origine = "amont"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+
+[skills.pick-ui-library.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/pick-ui-library"
+
+[skills.prototype]
+famille = "interface"
+role = "Explorer plusieurs pistes de design vraiment différentes avant d'en choisir une, à la demande."
+origine = "amont"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+
+[skills.prototype.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/prototype"
+
+[skills.design-taste-frontend]
+famille = "interface"
+role = "Direction artistique d'une page web sans effet générique, avec un inspecteur dans le navigateur."
+origine = "amont"
+licence = "MIT"
+copie = false  # ses photos (Wikimedia Commons, Unsplash) et ses icônes ont leur propre licence
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.design-taste-frontend.amont]
+depot = "Leonxlnx/taste-skill"
+ref = "v2.5.0"
+chemin = "skills/taste-skill"
+
+[skills.impeccable]
+famille = "interface"
+role = "Concevoir, critiquer et polir une interface, du design system aux détails."
+origine = "npm"
+licence = "Apache-2.0"
+copie = false  # son installeur produit une variante par agent : il installe lui-même
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:coordinator", "hermes:coordinator-claude", "hermes:coder", "hermes:coder-claude", "hermes:coder-opencode"]
+
+[skills.impeccable.npm]
+paquet = "impeccable"
+version = "4.8.0"
+
+# Vidéo
+
+[skills.hyperframes]
+famille = "video"
+role = "Faire, monter, animer ou rendre une vidéo avec HyperFrames (HTML rendu en vidéo)."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.hyperframes.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/hyperframes"
+
+[skills.hyperframes-cli]
+famille = "video"
+role = "Le CLI d'HyperFrames par tâche : créer, vérifier, prévisualiser, rendre, publier."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.hyperframes-cli.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/hyperframes-cli"
+
+[skills.hyperframes-registry]
+famille = "video"
+role = "Les blocs et composants prêts à l'emploi d'HyperFrames : transitions, titres, graphiques."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.hyperframes-registry.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/hyperframes-registry"
+
+[skills.figma]
+famille = "video"
+role = "Amener Figma dans une vidéo HyperFrames : éléments, jetons de marque, maquettes animées."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.figma.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/figma"
+
+[skills.media-use]
+famille = "video"
+role = "Trouver ou produire les médias d'une vidéo : musique, sons, images, voix, mixage."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.media-use.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/media-use"
+
+[skills.remotion-to-hyperframes]
+famille = "video"
+role = "Porter dans HyperFrames une vidéo faite avec un autre outil, vérifiée image par image."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.remotion-to-hyperframes.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/remotion-to-hyperframes"
+
+[skills.reverse-any-video]
+famille = "video"
+role = "Refaire une vidéo existante en projet HyperFrames modifiable, couche par couche."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.reverse-any-video.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/reverse-any-video"
+
+[skills.slideshow]
+famille = "video"
+role = "Un diaporama HyperFrames à présenter en direct, avec notes de l'orateur."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.slideshow.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/slideshow"
+
+[skills.style-sampling]
+famille = "video"
+role = "Un nouvel épisode dans un style vidéo éprouvé, sur le sujet voulu."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.style-sampling.amont]
+depot = "heygen-com/hyperframes"
+ref = "v0.9.19"
+chemin = "skills/style-sampling"
+
+[skills.captions-overlay]
+famille = "video"
+role = "Les sous-titres d'une vidéo HyperFrames, posés par-dessus le film, jamais dans une bande réservée."
+origine = "projet"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["projet:code-my-life/video-factory"]
+
+[skills.captions-overlay.projet]
+depot = "code-my-life/video-factory"
+chemin = ".claude/skills/captions-overlay"
+
+[skills.cut-the-curve]
+famille = "video"
+role = "Le catalogue des raccords de video-factory : coupes accordées en vitesse et entrées en cascade."
+origine = "projet"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["projet:code-my-life/video-factory"]
+
+[skills.cut-the-curve.projet]
+depot = "code-my-life/video-factory"
+chemin = ".claude/skills/cut-the-curve"
+
+[skills.motion-doctrine]
+famille = "video"
+role = "La loi du mouvement de video-factory : une vidéo à plusieurs scènes comme un seul plan continu."
+origine = "projet"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["projet:code-my-life/video-factory"]
+
+[skills.motion-doctrine.projet]
+depot = "code-my-life/video-factory"
+chemin = ".claude/skills/motion-doctrine"
+
+[skills.seam-craft]
+famille = "video"
+role = "Les conditions d'un raccord correct entre deux scènes sur la timeline principale."
+origine = "projet"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["projet:code-my-life/video-factory"]
+
+[skills.seam-craft.projet]
+depot = "code-my-life/video-factory"
+chemin = ".claude/skills/seam-craft"
+
+[skills.video-factory]
+famille = "video"
+role = "Comment video-factory change un script annoté en projet HyperFrames, jusqu'au rendu."
+origine = "projet"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["projet:code-my-life/video-factory"]
+
+[skills.video-factory.projet]
+depot = "code-my-life/video-factory"
+chemin = ".claude/skills/video-factory"
+
+# Revue de code
+
+[skills.check-pr]
+famille = "revue"
+role = "Relever les commentaires, les checks et le texte d'une PR, puis les traiter, à la demande."
+origine = "amont"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+
+[skills.check-pr.amont]
+depot = "greptileai/skills"
+ref = "59e79eca306a09321ff40d6a3045c98967568b78"
+branche = "main"
+chemin = "skills/check-pr"
+
+[skills.cli-review]
+famille = "revue"
+role = "Faire relire la branche en local par le CLI de Greptile avant le push, à la demande."
+origine = "amont"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+
+[skills.cli-review.amont]
+depot = "greptileai/skills"
+ref = "59e79eca306a09321ff40d6a3045c98967568b78"
+branche = "main"
+chemin = "skills/cli-review"
+
+# Outils
+
+[skills.playwright-cli]
+famille = "outils"
+role = "Piloter un navigateur et tester des pages avec Playwright, en ligne de commande."
+origine = "amont"
+licence = "Apache-2.0"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
+[skills.playwright-cli.amont]
+depot = "microsoft/playwright-cli"
+ref = "v0.1.23"
+chemin = "skills/playwright-cli"
+
+[skills.write-swift]
+famille = "outils"
+role = "Écrire du Swift moderne : types valeur, concurrence de Swift 6, tests, performance."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "hermes:default"]
+
+[skills.write-swift.amont]
+depot = "emilkowalski/skills"
+ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+branche = "main"
+chemin = "skills/write-swift"
