@@ -221,7 +221,8 @@ class VraiCatalogueTest(unittest.TestCase):
         def allowed(tag):  # as Renovate reads « !/…/ » : a tag that matches the expression is refused
             return not refused.search(tag)
         self.assertTrue(allowed(cat.load()["playwright-cli"]["amont"]["ref"]))
-        for tag in PLAYWRIGHT_CLI_CURRENT + ["v0.1.24", "v0.2.0", "v0.4.0", "v0.5.3"]:
+        for tag in PLAYWRIGHT_CLI_CURRENT + ["v0.1.24", "v0.2.0", "v0.4.0", "v0.4.5", "v0.5.3", "v0.150.1", "v0.162.2",
+                                             "v0.181.0"]:
             self.assertTrue(allowed(tag), tag)
         for tag in PLAYWRIGHT_CLI_FORMER:
             self.assertFalse(allowed(tag), tag)

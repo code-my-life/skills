@@ -9,7 +9,7 @@
     {
       "description": "playwright-cli : 14 de ses tags portent l'ancien paquet npm playwright-cli (v0.4.3 à v0.5.2, v0.150.0 à v0.180.0, 2020 et 2021), les autres le paquet actuel @playwright/cli. Les 14 anciens sont exclus, toutes les versions du paquet actuel passent (skills#9).",
       "matchDepNames": ["microsoft/playwright-cli"],
-      "allowedVersions": "!/^v?0\\.(4\\.[34]|5\\.[0-2]|1[5-8][0-9]\\.[0-9]+)$/"
+      "allowedVersions": "!/^v?0\\.(4\\.[34]|5\\.[0-2]|150\\.0|151\\.0|152\\.0|161\\.0|162\\.[01]|170\\.0|171\\.0|180\\.0)$/"
     }
   ],
   "customManagers": [
