@@ -6,6 +6,8 @@
 # consommateurs : operateur (séances de Claude Code), lane-claude et lane-opencode (lanes de la factory),
 #   hermes:<profil>, projet:<propriétaire/dépôt>. Claude Code et OpenCode lisent ~/.claude/skills : une skill de
 #   l'opérateur qui se déclenche seule y est vue aussi par les lanes Claude Code.
+#   Le profil racine (hermes:default) ne reçoit plus les skills d'Emil Kowalski depuis le 2026-11-06, en attendant
+#   la décision du propriétaire (#5).
 # declenchement : manuel (jamais par le modèle), auto (le modèle la prend), carte (préchargée par la carte).
 # Renovate lit les versions figées : garder les lignes depot, ref (puis branche) et paquet, version l'une après
 # l'autre.
@@ -89,7 +91,7 @@ role = "Construire une animation en prenant les décisions dans le bon ordre, ju
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.animate.amont]
 depot = "emilkowalski/skills"
@@ -103,7 +105,7 @@ role = "Animations React Native et Expo : Reanimated, gestes, transitions, retou
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.animate-expo.amont]
 depot = "emilkowalski/skills"
@@ -117,7 +119,7 @@ role = "Garder les animations web dans le budget d'une image, et trouver ce qui 
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.animation-performance.amont]
 depot = "emilkowalski/skills"
@@ -131,7 +133,7 @@ role = "Donner le nom exact d'un effet d'animation décrit avec des mots vagues.
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.animation-vocabulary.amont]
 depot = "emilkowalski/skills"
@@ -145,7 +147,7 @@ role = "Le mouvement fluide et physique d'Apple, adapté au web : ressorts, gest
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.apple-design.amont]
 depot = "emilkowalski/skills"
@@ -159,7 +161,7 @@ role = "Trouver les endroits d'une interface où une animation servirait, et éc
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.find-animation-opportunities.amont]
 depot = "emilkowalski/skills"
@@ -173,7 +175,7 @@ role = "Auditer les animations d'une base de code et écrire les plans de correc
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.improve-animations.amont]
 depot = "emilkowalski/skills"
@@ -203,7 +205,7 @@ role = "La finition d'une interface selon Emil Kowalski : composants, animations
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.emil-design-eng.amont]
 depot = "emilkowalski/skills"
@@ -217,7 +219,7 @@ role = "Casser une interface avec des données extrêmes, et rendre chaque défa
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.break-ui.amont]
 depot = "emilkowalski/skills"
@@ -231,7 +233,7 @@ role = "Faire qu'une application web se sente native sur un téléphone, réglag
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.mobile-native.amont]
 depot = "emilkowalski/skills"
@@ -245,7 +247,7 @@ role = "Guide de Sonner, la bibliothèque de toasts React : mise en place, style
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+consommateurs = ["operateur", "lane-claude", "lane-opencode"]
 
 [skills.ask-sonner.amont]
 depot = "emilkowalski/skills"
@@ -538,7 +540,7 @@ role = "Écrire du Swift moderne : types valeur, concurrence de Swift 6, tests, 
 origine = "amont"
 licence = "MIT"
 declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "hermes:default"]
+consommateurs = ["operateur", "lane-claude"]
 
 [skills.write-swift.amont]
 depot = "emilkowalski/skills"

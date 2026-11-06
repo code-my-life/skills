@@ -36,7 +36,6 @@ ROOT = Path(__file__).absolute().parent.parent
 ORIGINS = {"maison", "amont", "npm", "projet"}
 TRIGGERS = {"manuel", "auto", "carte"}
 AGENT = re.compile(r"^(operateur|lane-claude|lane-opencode|hermes:[a-z0-9-]+|projet:[\w.-]+/[\w.-]+)$")
-CLAUDE_DIR = {"operateur", "lane-claude"}  # both read ~/.claude/skills, which OpenCode reads too
 LICENSES = ("LICENSE", "LICENSE.md", "LICENSE.txt", "COPYING", "NOTICE", "NOTICE.md")
 # Commands and skills that ship with Claude Code: a skill of the same name would hide or shadow them.
 BUILT_IN = {
@@ -171,14 +170,14 @@ def manual(skills: dict) -> list[str]:
 
 
 def opencode_rule(skills: dict) -> dict[str, str]:
-    """What the OpenCode lane may see. It reads ~/.claude/skills: every skill there that is not its own, or that
-    only a person starts, is hidden from it (OpenCode ignores disable-model-invocation)."""
-    rule = {"*": "allow"}
+    """What the OpenCode lane may see: its own skills, nothing else. It reads every SKILL.md under ~/.claude/skills,
+    the skills that Claude Code syncs from claude.ai (synced/) and its .trash/ included, so the rule denies all, then
+    allows the skills of the lane that start on their own (OpenCode ignores disable-model-invocation). The last
+    matching rule wins."""
+    rule = {"*": "deny"}
     for name, entry in sorted(skills.items()):
-        agents = set(entry.get("consommateurs") or [])
-        mine = "lane-opencode" in agents and entry.get("declenchement") != "manuel"
-        if agents & CLAUDE_DIR and not mine:
-            rule[name] = "deny"
+        if "lane-opencode" in (entry.get("consommateurs") or []) and entry.get("declenchement") != "manuel":
+            rule[name] = "allow"
     return rule
 
 
