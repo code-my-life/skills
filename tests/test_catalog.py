@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -185,6 +186,22 @@ class CatalogueTest(unittest.TestCase):
 class VraiCatalogueTest(unittest.TestCase):
     def test_le_catalogue_du_depot_est_conforme(self):
         self.assertEqual(cat.problems(ROOT), [])
+
+    def test_chaque_version_figee_du_catalogue_a_un_seul_gestionnaire_renovate(self):
+        config = json.loads((ROOT / "renovate.json").read_text(encoding="utf-8"))
+        text = (ROOT / "catalog.toml").read_text(encoding="utf-8")
+        managers: dict[tuple[str, str], set[str]] = {}
+        for manager in config["customManagers"]:
+            for pattern in manager["matchStrings"]:
+                for m in re.finditer(pattern.replace("(?<", "(?P<"), text):
+                    found = m.groupdict()
+                    key = (found["depName"], found.get("currentDigest") or found["currentValue"])
+                    managers.setdefault(key, set()).add(manager["datasourceTemplate"])
+        skills = cat.load()
+        pins = {(e["amont"]["depot"], e["amont"]["ref"]) for e in skills.values() if e.get("origine") == "amont"}
+        pins |= {(e["npm"]["paquet"], e["npm"]["version"]) for e in skills.values() if e.get("origine") == "npm"}
+        self.assertEqual(set(managers), pins)
+        self.assertEqual({pin: found for pin, found in managers.items() if len(found) != 1}, {})
 
     def test_les_listes_lues_par_la_factory(self):
         skills = cat.load()

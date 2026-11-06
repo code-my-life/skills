@@ -8,9 +8,9 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Un dépôt amont figé sur un tag : depot puis ref.",
+      "description": "Un dépôt amont figé sur un tag de version (v1.2.3, jamais un commit) : depot puis ref.",
       "managerFilePatterns": ["/^catalog\\.toml$/"],
-      "matchStrings": ["depot = \"(?<depName>[^\"]+)\"\\nref = \"(?<currentValue>v?\\d[^\"]*)\""],
+      "matchStrings": ["depot = \"(?<depName>[^\"]+)\"\\nref = \"(?<currentValue>v?\\d+(?:\\.\\d+)+(?:[-+][0-9A-Za-z.-]+)?)\""],
       "datasourceTemplate": "github-tags"
     },
     {
