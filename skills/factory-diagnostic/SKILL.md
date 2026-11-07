@@ -41,7 +41,7 @@ Dépense un effort disproportionné ici. Voies, à peu près dans cet ordre :
 5. le rejeu d'une trace capturée sur disque ;
 6. un harnais jetable : un sous-ensemble minimal du système, dépendances simulées ;
 7. une boucle de propriétés ou de fuzz, pour « parfois faux » ;
-8. une bissection automatisée (`git bisect run`) quand le bug est apparu entre deux états connus (le « depuis quand » de l'issue) ;
+8. une bissection automatisée (`git bisect run`) quand le bug est apparu entre deux états connus (le « depuis quand » de l'issue), dans un worktree jetable ou suivie de `git bisect reset` : reviens à la base du brief (`git rev-parse HEAD`) avant la phase suivante ;
 9. une boucle différentielle : même entrée dans l'ancienne et la nouvelle version, sorties comparées.
 
 Resserre-la : plus rapide (cache, périmètre réduit), plus nette (assertion sur le symptôme exact, pas « ne plante pas »), plus déterministe (heure figée, graine fixée, système de fichiers isolé, réseau gelé). Un bug non déterministe : le but est un **taux de reproduction plus haut** (100 passages, parallélisme, fenêtres de timing resserrées) ; 50 % se débogue, 1 % non.
@@ -77,6 +77,8 @@ Sans prédiction, c'est une impression : écarte-la ou affûte-la. Écarte d'emb
 
 Chaque sonde répond à une prédiction précise de la phase 3, **une variable à la fois**. Préfère un débogueur ou un REPL ; sinon des logs ciblés aux frontières qui départagent les hypothèses, jamais « tout journaliser puis grep ». **Étiquette chaque log** d'un préfixe unique, `[DEBUG-a4f2]` : le retrait tient en un grep. Un bug de performance : pas de logs, mais une mesure de référence puis une bissection.
 
+Choisis **un préfixe pour ce run**, `[DEBUG-xxxx]` avec quatre caractères tirés au hasard, et note-le dans `evidence/02-hypotheses.md`. Avant la première sonde, `git grep -c '\[DEBUG-'` relève les occurrences déjà présentes sur la base (un dépôt peut en porter, comme cette skill) : elles restent.
+
 Note chaque hypothèse **retenue** ou **écartée**, avec la sonde et ce qu'elle a montré, dans `evidence/02-hypotheses.md`.
 
 ## Le test rouge proposé
@@ -87,7 +89,7 @@ Si **aucune couture correcte n'existe** (un test à la seule couture accessible 
 
 ## Fin de carte : le constat
 
-1. `git grep -n '\[DEBUG-'` ne trouve rien et `git status --short` est vide : tout log de sonde est retiré.
+1. `git grep -n '<ton préfixe exact, par exemple [DEBUG-a4f2]>'` ne trouve rien (les occurrences déjà présentes sur la base, relevées avant la première sonde, restent) et `git status --short` est vide : tout log de sonde est retiré.
 2. Poste **un seul** `kanban_comment`, au format de l'issue Bug (ses titres `### Cause` et `### Reproduction`, que l'issue Bug suivante recopie) :
 
 ```
