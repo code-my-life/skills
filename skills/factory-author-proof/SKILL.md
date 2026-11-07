@@ -29,6 +29,12 @@ Tu implémentes une carte dont le brief suit le gabarit factory-brief. Résultat
 
 1. **Ajoute** le cas de test nommé dans le brief (nouveau `test(...)`/`it(...)` dans le fichier indiqué, ou nouveau fichier). Un test qui existe déjà et passe n'est pas le test fail-first : si le cas n'est pas encore écrit, l'écrire est cette étape, pas une raison de bloquer. Lance uniquement ce fichier. Le nouveau cas **doit échouer** (le reste du fichier peut passer). Sauvegarde la sortie : `... > evidence/01-test-fails-on-base.txt 2>&1`.
 2. Si le **nouveau cas** passe déjà sur la base (après l'avoir réellement écrit et lu la sortie) : le brief est faux ou le bug est ailleurs. `kanban_comment` avec la sortie, puis `kanban_block(kind="needs_input", reason="le test fail-first passe sur la base : <détail>")`. Ne « corrige » pas le test pour qu'il échoue.
+3. **Un test qui prouve quelque chose** (d'après `tdd` de mattpocock/skills) :
+   - pas de test tautologique : son attendu est écrit en dur, tiré du brief ou de la spécification, jamais recalculé
+     comme le code le calcule ;
+   - pas de test couplé à l'implémentation : il passe par l'interface publique et survit à un refactor qui garde le
+     comportement ;
+   - des mocks aux seules frontières du système (réseau, horloge, disque), jamais sur le code de la carte.
 
 ### 1bis. PR de tests (brief avec `test_only: true`)
 
