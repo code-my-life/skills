@@ -28,4 +28,6 @@ skills/reverse-any-video/** -whitespace linguist-vendored
 skills/review-animations/** -whitespace linguist-vendored
 skills/slideshow/** -whitespace linguist-vendored
 skills/style-sampling/** -whitespace linguist-vendored
+skills/wizard/** -whitespace linguist-vendored
 skills/write-swift/** -whitespace linguist-vendored
+skills/writing-for-agents/** -whitespace linguist-vendored
