@@ -1,6 +1,6 @@
 ---
 name: revue-spec
-description: Avant d'approuver une PR de la factory, relire son diff contre l'issue d'origine : critères manquants ou partiels, ce qui n'était pas demandé, ce qui semble fait mais faux. Une passe, sans poster. À lancer à la main.
+description: "Avant d'approuver une PR de la factory, relire son diff contre l'issue d'origine : critères manquants ou partiels, ce qui n'était pas demandé, ce qui semble fait mais faux. Une passe, sans poster. À lancer à la main."
 disable-model-invocation: true
 ---
 

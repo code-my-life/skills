@@ -1,6 +1,6 @@
 ---
 name: factory-retro
-description: Rétrospective d'une carte de la factory : propose des changements à l'environnement des agents (contrôles, consignes, accès à l'information), jamais au code. À lancer à la main, de préférence sur une carte bloquée, en triage ou rouge deux fois.
+description: "Rétrospective d'une carte de la factory : propose des changements à l'environnement des agents (contrôles, consignes, accès à l'information), jamais au code. À lancer à la main, de préférence sur une carte bloquée, en triage ou rouge deux fois."
 disable-model-invocation: true
 ---
 

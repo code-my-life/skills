@@ -1,6 +1,6 @@
 ---
 name: controle-memoire
-description: Contrôler la mémoire de Claude Code (MEMORY.md et ses fichiers) : contradictions, pages orphelines, faits dépassés. Les corrections se tranchent en QCM. À lancer à la main.
+description: "Contrôler la mémoire de Claude Code (MEMORY.md et ses fichiers) : contradictions, pages orphelines, faits dépassés. Les corrections se tranchent en QCM. À lancer à la main."
 disable-model-invocation: true
 ---
 

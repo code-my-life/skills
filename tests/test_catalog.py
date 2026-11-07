@@ -84,6 +84,16 @@ class CatalogueTest(unittest.TestCase):
         found = self.catalog(MAISON)
         self.assertIn("skills/oubliee : absente du catalogue", found)
 
+    def test_une_valeur_d_en_tete_sans_guillemets_qui_contient_deux_points_est_refusee(self):
+        self.skill("maison-auto")
+        md = self.root / "skills" / "maison-auto" / "SKILL.md"
+        md.write_text(md.read_text().replace("description: Essai.", "description: Contrôler la mémoire (MEMORY.md) : contradictions."))
+        found = self.catalog(MAISON)
+        self.assertTrue(any("maison-auto : en-tête de SKILL.md, la valeur de « description »" in p for p in found), found)
+        md.write_text(md.read_text().replace("description: Contrôler la mémoire (MEMORY.md) : contradictions.",
+                                             'description: "Contrôler la mémoire (MEMORY.md) : contradictions."'))
+        self.assertEqual(cat.problems(self.root), [])
+
     def test_une_skill_d_agent_qui_porte_disable_model_invocation_est_refusee(self):
         self.skill("maison-auto", manual=True)
         found = self.catalog(MAISON)
