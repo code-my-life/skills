@@ -264,6 +264,7 @@ class VraiCatalogueTest(unittest.TestCase):
         skills = cat.load()
         pins = {(e["amont"]["depot"], e["amont"]["ref"]) for e in skills.values() if e.get("origine") == "amont"}
         pins |= {(e["npm"]["paquet"], e["npm"]["version"]) for e in skills.values() if e.get("origine") == "npm"}
+        pins |= {(e["d_apres"]["depot"], e["d_apres"]["ref"]) for e in skills.values() if e.get("adaptee")}
         self.assertEqual(set(managers), pins)
         self.assertEqual({pin: found for pin, found in managers.items() if len(found) != 1}, {})
 
