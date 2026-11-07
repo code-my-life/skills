@@ -19,7 +19,8 @@ Le propriétaire la lance **à la main**, avant d'approuver une PR de la factory
 
 - La PR (numéro et dépôt) : `gh pr view <n> -R <dépôt>` (titre, corps, base, tête) et
   `gh pr diff <n> -R <dépôt>`. Si le diff est vide, ou si la PR n'existe pas, arrête-toi ici.
-- L'issue d'origine : la ligne `Fixes <dépôt>#<n>` du corps de la PR, ou, à défaut, une référence dans les commits.
+- L'issue d'origine : la ligne `Fixes #<n>` du corps de la PR (l'issue est alors dans le dépôt de la PR) ou
+  `Fixes <dépôt>#<n>`, ou, à défaut, une référence dans les commits.
   `gh issue view <n> -R <dépôt>`. Sans issue, dis « pas d'issue » et arrête-toi : il n'y a rien à comparer.
 
 ### 2. Un sous-agent à contexte vierge
