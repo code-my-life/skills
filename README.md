@@ -58,6 +58,7 @@ dans le fichier `LICENSE` de son dossier.
 - **`factory-author-proof`** : Preuve d'auteur d'une carte : test rouge sur la base, correctif minimal, test vert, preuves sur disque. (maison, carte)
 - **`factory-brief`** : Changer une issue en brief exécutable et en cartes Kanban, pour le coordinateur. (maison, carte)
 - **`factory-cli-lane`** : Déléguer l'implémentation à un CLI (claude -p, opencode run), Hermès gardant la carte. (maison, carte)
+- **`factory-diagnostic`** : Procédure de la carte Diagnostic : boucle rouge, repro réduite, hypothèses réfutables, constat en commentaire. (maison, carte)
 - **`factory-issue`** : Rédiger une issue au standard de la factory (types d'issues, ADR 0017), gril en QCM. (maison, auto)
 - **`factory-nouveau-depot`** : Créer un dépôt de code-my-life et le brancher sur la factory, du dépôt modèle au contrôle final. (maison, manuel)
 - **`factory-onboard`** : Préparer un dépôt pour la factory : clone, projet Hermès, AGENTS.md, outils. (maison, carte)

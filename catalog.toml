@@ -22,6 +22,21 @@ licence = "MIT"
 declenchement = "carte"
 consommateurs = ["hermes:coder", "hermes:coder-claude", "hermes:coder-opencode", "hermes:scribe"]
 
+[skills.factory-diagnostic]
+famille = "factory"
+role = "Procédure de la carte Diagnostic : boucle rouge, repro réduite, hypothèses réfutables, constat en commentaire."
+origine = "maison"
+adaptee = true
+licence = "MIT"
+declenchement = "carte"
+consommateurs = ["hermes:coder", "hermes:coder-claude", "hermes:coder-opencode"]
+
+[skills.factory-diagnostic.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/engineering/diagnosing-bugs"
+
 [skills.factory-brief]
 famille = "factory"
 role = "Changer une issue en brief exécutable et en cartes Kanban, pour le coordinateur."
