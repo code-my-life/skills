@@ -69,6 +69,14 @@ licence = "MIT"
 declenchement = "auto"
 consommateurs = ["operateur", "lane-claude"]
 
+[skills.gril]
+famille = "factory"
+role = "Passer un sujet sur le gril : rondes de QCM, faits cherchés par l'agent, décisions du propriétaire."
+origine = "maison"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude"]
+
 [skills.factory-nouveau-depot]
 famille = "factory"
 role = "Créer un dépôt de code-my-life et le brancher sur la factory, du dépôt modèle au contrôle final."
