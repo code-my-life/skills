@@ -29,7 +29,7 @@ origine = "maison"
 adaptee = true
 licence = "MIT"
 declenchement = "carte"
-consommateurs = ["hermes:coder"]
+consommateurs = ["hermes:coder", "hermes:coder-claude", "hermes:coder-opencode"]
 
 [skills.factory-diagnostic.d_apres]
 depot = "mattpocock/skills"
