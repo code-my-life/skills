@@ -118,6 +118,7 @@ ask() {
   read -e -r -p "$p" input || rc=1
   if (( rc )) && [[ -z "$input" ]]; then return 1; fi
   [[ -z "$input" && -n "$current" ]] && input="$current"
+  if [[ "$input" == *\'* ]]; then warn "a single quote (') can't be stored in $ENV_FILE: enter the value again"; ask "$key" "$prompt"; return; fi
   printf -v "$key" '%s' "$input"
 }
 
@@ -134,18 +135,25 @@ ask_secret() {
   printf '\n'
   if (( rc )) && [[ -z "$input" ]]; then return 1; fi
   [[ -z "$input" && -n "$current" ]] && input="$current"
+  if [[ "$input" == *\'* ]]; then warn "a single quote (') can't be stored in $ENV_FILE: enter the value again"; ask_secret "$key" "$prompt"; return; fi
   printf -v "$key" '%s' "$input"
 }
 
 # write_env KEY VALUE upserts KEY='VALUE' into ENV_FILE (replaces any existing
 # line) and sets $KEY. Idempotent. Creates ENV_FILE at mode 0600; writes through
-# a symlink and keeps an existing file's mode.
+# a symlink and keeps an existing file's mode. A value with a single quote is
+# refused: .env readers do not agree on how to escape it, so it would be stored
+# changed.
 write_env() {
-  local key="$1" value="$2" tmp sq="'\\''"
+  local key="$1" value="$2" tmp
+  if [[ "$value" == *\'* ]]; then
+    warn "$key not written: a value with a single quote (') can't be stored safely in $ENV_FILE"
+    return 1
+  fi
   [[ -e "$ENV_FILE" ]] || (umask 077 && : > "$ENV_FILE")
   tmp=$(mktemp)
   grep -vE "^${key}=" "$ENV_FILE" > "$tmp" || true
-  printf "%s='%s'\n" "$key" "${value//\'/$sq}" >> "$tmp"
+  printf "%s='%s'\n" "$key" "$value" >> "$tmp"
   cat "$tmp" > "$ENV_FILE"
   rm -f "$tmp"
   printf -v "$key" '%s' "$value"

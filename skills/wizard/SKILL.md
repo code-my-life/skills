@@ -46,4 +46,4 @@ Hold the bar the template sets: open the URL before asking for its value, use `a
 
 ---
 
-Adaptée de `wizard` de mattpocock/skills (MIT, Matt Pocock), commit 4ae2317 : déclenchement manuel (`disable-model-invocation: true`), l'agent ne la lance jamais lui-même ; `template.sh` corrigé pour `shellcheck` (SC1087 corrigé, SC2317 écarté avec sa raison).
+Adaptée de `wizard` de mattpocock/skills (MIT, Matt Pocock), commit 4ae2317 : déclenchement manuel (`disable-model-invocation: true`), l'agent ne la lance jamais lui-même ; `template.sh` corrigé pour `shellcheck` (SC1087 corrigé, SC2317 écarté avec sa raison) ; une valeur qui contient une apostrophe est refusée à la saisie (`ask`, `ask_secret`) et par `write_env`, car les lecteurs de `.env` ne comprennent pas l'échappement `'\''` de bash et le mot de passe enregistré changerait.

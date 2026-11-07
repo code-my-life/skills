@@ -43,7 +43,10 @@ Lis-les en lecture seule : n'écris jamais dans une base d'Hermès ni dans `~/.h
 - **Les verdicts de la gate** : les commentaires de la carte dont l'auteur est `gate`, `gate-claude` ou `factory-gate`,
   et les preuves sous `evidence/gate/<sha7>/` de l'espace de la carte.
 - **Les transcriptions des lanes** : les séances de Claude Code de la carte, dans
-  `~/.claude/projects/-home-cleme--hermes-kanban-boards-factory-workspaces-t-<id>` (un dossier par carte).
+  `~/.claude/projects/<dossier de travail de la carte, avec chaque `/` remplacé par `-`>` (un dossier par carte). Le
+  dossier de travail est `tasks.workspace_path` de la carte dans `kanban.db` ; pour un espace sous
+  `~/.hermes/kanban/boards/factory/workspaces/t_<id>`, le dossier se termine par `-t-<id>`. Liste
+  `~/.claude/projects/` et cherche ce suffixe plutôt que de recopier un chemin.
 - **Le vrai modèle** : `~/.hermes/state.db`, table `session_model_usage` (`model`, jetons, coût par séance). Le modèle
   réellement servi n'est pas celui qu'annonce la configuration : une surcharge sans fournisseur retombe sur un modèle
   gratuit.
