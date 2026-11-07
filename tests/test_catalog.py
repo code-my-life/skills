@@ -308,6 +308,23 @@ class VraiCatalogueTest(unittest.TestCase):
         self.assertIn("hyperframes", cat.names_for(skills, "hermes:default"))
         self.assertEqual(set(cat.names_for(skills, "hermes:default")) & set(cat.manual(skills)), set())
 
+    def test_les_rondes_du_gril_ne_sont_ecrites_que_dans_la_skill_gril(self):
+        phrase = "Une ronde pose toutes les questions dont les prérequis sont tranchés"
+        gril = ROOT / "skills" / "gril"
+        # Without the phrase in gril itself, the scan below would pass on nothing.
+        self.assertIn(phrase, (gril / "SKILL.md").read_text(encoding="utf-8"))
+        carriers = []
+        for path in sorted((ROOT / "skills").rglob("*")):
+            if not path.is_file() or path.is_relative_to(gril):
+                continue
+            try:
+                text = path.read_text(encoding="utf-8")
+            except UnicodeDecodeError:  # binary file, not text
+                continue
+            if phrase in text:
+                carriers.append(path.relative_to(ROOT).as_posix())
+        self.assertEqual(carriers, [])
+
 
 if __name__ == "__main__":
     unittest.main()
