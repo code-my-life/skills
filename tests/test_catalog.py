@@ -195,6 +195,21 @@ class CatalogueTest(unittest.TestCase):
         with self.assertRaises(SystemExit):
             cat.catalog_at("nexistepas", self.root)
 
+    def test_l_aiguillage_qui_oublie_une_skill_de_l_operateur_fait_echouer_le_controle(self):
+        router = MAISON.replace("maison-auto", "aiguillage").replace('"auto"', '"manuel"').replace(
+            '["operateur", "lane-claude", "hermes:coder"]', '["operateur"]')
+        other = MAISON.replace("maison-auto", "autre-skill")
+        agent_only = MAISON.replace("maison-auto", "skill-d-agent").replace('["operateur", "lane-claude", "hermes:coder"]',
+                                                                          '["hermes:coder"]')
+        self.skill("aiguillage", manual=True)
+        self.skill("autre-skill")
+        self.skill("skill-d-agent")
+        found = self.catalog(router + other + agent_only)
+        self.assertEqual(found, ["aiguillage : oublie la skill de l'opérateur « autre-skill »"])
+        (self.root / "skills" / "aiguillage" / "SKILL.md").write_text(
+            "---\nname: aiguillage\ndescription: Essai.\ndisable-model-invocation: true\n---\n\n`autre-skill`\n")
+        self.assertEqual(cat.problems(self.root), [])
+
     def test_le_nom_de_skill_md_suit_son_dossier(self):
         self.skill("maison-auto", front_name="autre-nom")
         self.assertTrue(any("pas le nom du dossier" in p for p in self.catalog(MAISON)))
