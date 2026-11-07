@@ -29,6 +29,12 @@ Tu implémentes une carte dont le brief suit le gabarit factory-brief. Résultat
 
 1. **Ajoute** le cas de test nommé dans le brief (nouveau `test(...)`/`it(...)` dans le fichier indiqué, ou nouveau fichier). Un test qui existe déjà et passe n'est pas le test fail-first : si le cas n'est pas encore écrit, l'écrire est cette étape, pas une raison de bloquer. Lance uniquement ce fichier. Le nouveau cas **doit échouer** (le reste du fichier peut passer). Sauvegarde la sortie : `... > evidence/01-test-fails-on-base.txt 2>&1`.
 2. Si le **nouveau cas** passe déjà sur la base (après l'avoir réellement écrit et lu la sortie) : le brief est faux ou le bug est ailleurs. `kanban_comment` avec la sortie, puis `kanban_block(kind="needs_input", reason="le test fail-first passe sur la base : <détail>")`. Ne « corrige » pas le test pour qu'il échoue.
+3. **Un test qui prouve quelque chose** (d'après `tdd` de mattpocock/skills) :
+   - pas de test tautologique : son attendu est écrit en dur, tiré du brief ou de la spécification, jamais recalculé
+     comme le code le calcule ;
+   - pas de test couplé à l'implémentation : il passe par l'interface publique et survit à un refactor qui garde le
+     comportement ;
+   - des mocks aux seules frontières du système (réseau, horloge, disque), jamais sur le code de la carte.
 
 ### 1bis. PR de tests (brief avec `test_only: true`)
 
@@ -93,6 +99,9 @@ Le type du brief fixe la preuve :
      ## Version
      ```
      plus la section du type : `## Reproduction` (bug), `## Captures` (interface : les captures refaites, avant et après), `## Sabotages` (tests), `## Invariant` (maintenance), `## Documents` (documentation). **Une ligne par critère du brief**, avec son numéro : la gate et le job « Conventions » refusent une PR à laquelle il en manque une. « non prouvé » se dit, il ne se tait pas. La PR reste en brouillon tant que la gate ne l'a pas validée : c'est elle qui la passe en « prête » et demande la revue de Clément.
+   - **Un visuel dans « Ce qui a été fait »** (d'après `pr` de mattpocock/skills) : le plus petit qui montre le
+     changement, en bloc de texte : un arbre de composants, le diff d'un arbre de fichiers ou un arbre d'appels. Aucune
+     règle de la gate ne le vérifie.
    - **Push ou `gh pr create` refusé** (`Authentication failed`, `Invalid username or token`, 403, réseau) : relance une fois, telle quelle (le wrapper `gh` demande un jeton neuf à chaque appel). Si c'est encore refusé : `kanban_block(kind="capability", reason="push refusé : <sortie exacte>")`. Jamais de demande de revue sans branche poussée : coder-guard la refuse (refs locales), la gate rend rouge une revue sans PR, et taire un échec de push est une faute (incident claude-cockpit#25).
 4. Avant de demander la revue, tout ton travail est commité et poussé : coder-guard refuse la demande tant que `git status` liste un fichier modifié, indexé ou nouveau que git n'ignore pas (ADR 0020). La gate locale est verte (le hook `pre-push` l'a lancée sur ce que tu as poussé). Puis `kanban_request_review(` **sans reviewer** (aucun agent ne relit : la gate scriptée prend la carte ; Hermès refuse un relecteur qui n'est pas un profil, et coder-guard refuse tout reviewer), `summary="<2 phrases : ce qui a été fait, ce qui est prouvé>", metadata={"branch": "...", "base_commit": "...", "tip_commit": "...", "commits": [...], "changed_files": [...], "tests_run": N, "evidence": ["evidence/01-...", ...], "not_claimed": ["<ce que tu n'as pas prouvé>"], "pr_url": "<URL de la PR, obligatoire si la carte a un contrat PR>", "harness": "<coder|coder-claude|coder-opencode>"})`.
 5. Si tu as repéré un fichier qui collisionne avec d'autres cartes : `kanban_comment("hotspot: <chemin> : <raison>")` et répète-le dans `metadata.hotspots`.
