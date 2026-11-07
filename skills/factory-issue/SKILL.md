@@ -30,30 +30,11 @@ l'étiquette devait être transparente). Une cause inconnue appelle un Diagnosti
 
 ## 2. Passer l'issue sur le gril avant de l'écrire
 
-Méthode de la skill grill-me de Hermès (Rafael Zendron, d'après le « grilling » de Matt Pocock, licence MIT), adaptée
-aux types de la factory. But : que chaque décision soit prise par le propriétaire avant la première ligne de l'issue.
+Call the Skill tool with "gril" : il dit comment poser les décisions au propriétaire, en rondes de QCM. Les questions
+partent des sections obligatoires du type : l'arbre est dans `references/questions.md`, qui commence par ce que tu
+vérifies avant la première question.
 
-**Les faits sont à toi, les décisions au propriétaire.** Avant chaque ronde, cherche toi-même dans le dépôt ce qui s'y
-trouve : fichiers, composants, tests existants, captures, comportement actuel. Une issue cite des chemins réels. Ne pose
-jamais une question dont la réponse est dans le code.
-
-**Les rondes.** Les questions partent des sections obligatoires du type : l'arbre est dans `references/questions.md`.
-Une ronde pose toutes les questions dont les prérequis sont tranchés. Une question qui dépend d'une réponse encore
-ouverte attend la ronde suivante.
-
-**En QCM.** Pose chaque ronde avec l'outil de questions à choix (AskUserQuestion), jamais en liste de texte :
-- une question par décision, de 2 à 4 options, ta recommandation en premier avec « (recommandé) » dans son libellé ;
-- pour chaque option, une description courte : ce qu'elle implique, ce qu'elle coûte ;
-- un aperçu en ASCII (`preview`) quand on compare des variantes d'interface : boutons, menu, légende ;
-- 4 questions au plus par appel : au-delà, enchaîne les appels ;
-- les faits trouvés dans le dépôt vont dans un court message juste avant l'appel, pour que le choix se fasse sur pièces.
-
-Le propriétaire peut répondre hors des options. Lis sa réponse telle quelle : elle peut ouvrir une question nouvelle,
-à creuser dans le code avant la ronde suivante.
-
-Attends les réponses, regarde ce qui est devenu posable, puis pose la ronde suivante.
-
-**Ce que tu ne lâches pas :**
+**Ce que tu ne lâches pas**, en plus du gril :
 - **le type** : un « bug » sans référence existante est une Interface ou une Fonctionnalité ; une cause inconnue appelle
   d'abord un Diagnostic ;
 - **la cible** : pour une Interface, la maquette publiée en artifact sur la vraie forme des composants existants, et
@@ -62,18 +43,12 @@ Attends les réponses, regarde ce qui est devenu posable, puis pose la ronde sui
   solution non validée n'entre dans « Attendu » ;
 - **la mesure** : pour chaque critère, « comment le vérifie-t-on ? », jusqu'à obtenir un chiffre, un nom de test ou une
   capture ;
-- **le périmètre** : ce qui ne change pas, dit explicitement ;
-- **« je ne sais pas »** n'est pas une réponse finale : propose des options, ce qu'elles coûtent, et ta recommandation ;
-- **la complaisance** : si tout semble clair, cherche encore (thème sombre, 390 px, texte très long ou absent, liste
-  vide, erreur réseau, données réelles).
+- **le périmètre** : ce qui ne change pas, dit explicitement.
 
 **La taille.** Une coquille, ou un bug dont la référence est évidente : une ronde suffit. Une Interface ou une
-Fonctionnalité qui touche plusieurs écrans : autant de rondes qu'il en faut, jusqu'à ce qu'aucune question ne reste
-ouverte.
+Fonctionnalité qui touche plusieurs écrans : autant de rondes qu'il en faut.
 
-**La synthèse.** Quand plus rien n'est ouvert : la liste des décisions, ce qui reste ouvert et ce qui est hors du
-périmètre, puis le brouillon de l'issue (section 3). Demande en QCM : « Aligné ? Je la crée, ou on ajuste ? » Rien
-n'est créé sans cet accord, sauf si le propriétaire a demandé de créer l'issue directement.
+**La synthèse** est celle du gril : son brouillon est l'issue, écrite comme le dit la section 3.
 
 ## 3. Écrire les sections du type
 
