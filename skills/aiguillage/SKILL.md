@@ -36,6 +36,7 @@ le modèle quand la tâche s'y prête.
 | Choisir une bibliothèque d'interface | `pick-ui-library` (manuel) |
 | Chercher où l'architecture d'un dépôt freine les agents | `architecture` (manuel) |
 | Écrire ou relire une skill, un `SOUL.md`, un `AGENTS.md` | `writing-for-agents` (auto) |
+| Se faire passer sur le gril avant d'écrire un document (rondes de QCM) | `gril` (auto) |
 | Une étape que seul le propriétaire peut faire (identifiants, secrets, tableau de bord tiers) | `wizard` (manuel) |
 | Ranger la mémoire de Claude Code | `controle-memoire` (manuel) |
 

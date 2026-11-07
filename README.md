@@ -63,6 +63,7 @@ dans le fichier `LICENSE` de son dossier.
 - **`factory-nouveau-depot`** : Créer un dépôt de code-my-life et le brancher sur la factory, du dépôt modèle au contrôle final. (maison, manuel)
 - **`factory-onboard`** : Préparer un dépôt pour la factory : clone, projet Hermès, AGENTS.md, outils. (maison, carte)
 - **`factory-retro`** : Rétrospective d'une carte de la factory : pistes sur l'environnement des agents, rattachées à un événement. (maison, manuel)
+- **`gril`** : Passer un sujet sur le gril : rondes de QCM, faits cherchés par l'agent, décisions du propriétaire. (maison, auto)
 
 ### Animation et mouvement
 
