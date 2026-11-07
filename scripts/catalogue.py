@@ -81,6 +81,24 @@ def front_matter(skill_md: Path) -> dict[str, str]:
     return out
 
 
+def front_matter_problems(skill_md: Path) -> list[str]:
+    """Top-level values of the front matter that YAML rejects unquoted: « : » before a space or at the end, « # » after
+    a space. The skills CLI then skips the whole file and the skill is never installed (skills#26)."""
+    text = skill_md.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        return []
+    out = []
+    for line in text.split("---", 2)[1].splitlines():
+        m = re.match(r"^([A-Za-z][\w-]*):[ \t]+(\S.*)$", line)
+        if not m or m.group(2)[0] in "\"'|>[{&*!%@`":
+            continue
+        value = m.group(2).rstrip()
+        if ": " in value or value.endswith(":") or " #" in value:
+            out.append(f"en-tête de SKILL.md, la valeur de « {m.group(1)} » contient « : » ou « # » sans guillemets : "
+                       "le CLI skills ignore le fichier ; mets-la entre guillemets")
+    return out
+
+
 def copied(entry: dict) -> bool:
     """Whether the skill's files live in this repository."""
     return entry.get("copie", entry.get("origine") != "projet")
@@ -132,6 +150,7 @@ def problems(root: Path = ROOT, skills: dict | None = None) -> list[str]:
             out.append(f"{where} skills/{name}/SKILL.md manquant")
             continue
         meta = front_matter(folder / "SKILL.md")
+        out += [f"{where} {p}" for p in front_matter_problems(folder / "SKILL.md")]
         if meta.get("name") != name:
             out.append(f"{where} le name de SKILL.md est « {meta.get('name')} », pas le nom du dossier")
         manual_flag = meta.get("disable-model-invocation", "").lower() == "true"
