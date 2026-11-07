@@ -62,6 +62,7 @@ dans le fichier `LICENSE` de son dossier.
 - **`factory-issue`** : Rédiger une issue au standard de la factory (types d'issues, ADR 0017), gril en QCM. (maison, auto)
 - **`factory-nouveau-depot`** : Créer un dépôt de code-my-life et le brancher sur la factory, du dépôt modèle au contrôle final. (maison, manuel)
 - **`factory-onboard`** : Préparer un dépôt pour la factory : clone, projet Hermès, AGENTS.md, outils. (maison, carte)
+- **`factory-retro`** : Rétrospective d'une carte de la factory : pistes sur l'environnement des agents, rattachées à un événement. (maison, manuel)
 
 ### Animation et mouvement
 
@@ -106,12 +107,20 @@ dans le fichier `LICENSE` de son dossier.
 
 ### Revue de code
 
+- **`architecture`** : Trouver où l'architecture d'un dépôt freine les agents, en rapport visuel privé, à la demande. (maison, manuel)
 - **`check-pr`** : Relever les commentaires, les checks et le texte d'une PR, puis les traiter, à la demande. (greptileai/skills, manuel)
 - **`cli-review`** : Faire relire la branche en local par le CLI de Greptile avant le push, à la demande. (greptileai/skills, manuel)
+- **`revue-spec`** : Relire une PR de la factory contre son issue avant l'approbation, sans la poster, à la demande. (maison, manuel)
 
 ### Outils
 
+- **`aiguillage`** : Quelle skill prendre, et que faire à la fin d'une phase : le point d'entrée des séances. (maison, manuel)
+- **`controle-memoire`** : Contrôler la mémoire de Claude Code : contradictions, pages orphelines, faits dépassés. (maison, manuel)
+- **`etude-externe`** : Étudier un outil externe contre ses sources primaires, verdict par projet, étude gardée. (maison, manuel)
 - **`playwright-cli`** : Piloter un navigateur et tester des pages avec Playwright, en ligne de commande. (microsoft/playwright-cli, auto)
+- **`prototype-logique`** : Valider une règle ou une machine à états en page unique, publiée en artifact privé. (maison, manuel)
+- **`wizard`** : Un script bash qui guide pas à pas une étape que seul le propriétaire peut faire, à la demande. (maison, manuel)
 - **`write-swift`** : Écrire du Swift moderne : types valeur, concurrence de Swift 6, tests, performance. (emilkowalski/skills, auto)
+- **`writing-for-agents`** : Écrire une skill, un SOUL ou un AGENTS.md : les règles d'écriture pour un agent. (mattpocock/skills, auto)
 
 <!-- catalogue : fin -->

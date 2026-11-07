@@ -77,6 +77,21 @@ licence = "MIT"
 declenchement = "manuel"
 consommateurs = ["operateur"]
 
+[skills.factory-retro]
+famille = "factory"
+role = "Rétrospective d'une carte de la factory : pistes sur l'environnement des agents, rattachées à un événement."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+adaptee = true
+
+[skills.factory-retro.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/engineering/retro"
+
 # Animation et mouvement
 
 [skills.motion-graph]
@@ -534,6 +549,36 @@ ref = "59e79eca306a09321ff40d6a3045c98967568b78"
 branche = "main"
 chemin = "skills/cli-review"
 
+[skills.revue-spec]
+famille = "revue"
+role = "Relire une PR de la factory contre son issue avant l'approbation, sans la poster, à la demande."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+adaptee = true
+
+[skills.revue-spec.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/engineering/code-review"
+
+[skills.architecture]
+famille = "revue"
+role = "Trouver où l'architecture d'un dépôt freine les agents, en rapport visuel privé, à la demande."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+adaptee = true
+
+[skills.architecture.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/engineering/improve-codebase-architecture"
+
 # Outils
 
 [skills.playwright-cli]
@@ -562,3 +607,92 @@ depot = "emilkowalski/skills"
 ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
 branche = "main"
 chemin = "skills/write-swift"
+
+[skills.etude-externe]
+famille = "outils"
+role = "Étudier un outil externe contre ses sources primaires, verdict par projet, étude gardée."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+adaptee = true
+
+[skills.etude-externe.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/engineering/research"
+
+[skills.aiguillage]
+famille = "outils"
+role = "Quelle skill prendre, et que faire à la fin d'une phase : le point d'entrée des séances."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+adaptee = true
+
+[skills.aiguillage.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/engineering/ask-matt"
+
+[skills.controle-memoire]
+famille = "outils"
+role = "Contrôler la mémoire de Claude Code : contradictions, pages orphelines, faits dépassés."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+adaptee = true
+
+[skills.controle-memoire.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/in-progress/chief-of-staff"
+
+[skills.prototype-logique]
+famille = "outils"
+role = "Valider une règle ou une machine à états en page unique, publiée en artifact privé."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+adaptee = true
+
+[skills.prototype-logique.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/engineering/prototype"
+
+[skills.wizard]
+famille = "outils"
+role = "Un script bash qui guide pas à pas une étape que seul le propriétaire peut faire, à la demande."
+origine = "maison"
+licence = "MIT"
+declenchement = "manuel"
+consommateurs = ["operateur"]
+adaptee = true
+
+[skills.wizard.d_apres]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/engineering/wizard"
+
+[skills.writing-for-agents]
+famille = "outils"
+role = "Écrire une skill, un SOUL ou un AGENTS.md : les règles d'écriture pour un agent."
+origine = "amont"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur"]
+
+[skills.writing-for-agents.amont]
+depot = "mattpocock/skills"
+ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+branche = "main"
+chemin = "skills/productivity/writing-for-agents"

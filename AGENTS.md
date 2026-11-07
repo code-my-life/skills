@@ -33,6 +33,8 @@ La base de connaissance de Code My Life : toutes les skills de ses agents, au fo
 - Une skill change par une issue Skill (hermes-software-factory#39, ADR 0027) : le texte d'origine copié tel quel
   depuis main, et le texte proposé. La PR monte la version de `package.json` : `patch` pour un texte changé, `minor`
   pour une skill nouvelle. Sa fusion publie la release (workflow « Release »), puis la factory installe chaque agent.
+- Une skill des séances de l'opérateur (consommateur `operateur`) entre aussi dans `skills/aiguillage/SKILL.md`, entre
+  accents graves : `catalogue.py verifier` refuse l'aiguillage qui l'oublie.
 - Les commentaires du code sont en anglais. Aucun nom de personne dans un commentaire ou un titre de test.
 - Les décisions qui touchent ce dépôt vivent dans hermes-software-factory : l'issue #36 et ses sous-issues.
 

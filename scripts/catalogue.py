@@ -141,12 +141,25 @@ def problems(root: Path = ROOT, skills: dict | None = None) -> list[str]:
             out.append(f"{where} procédure de l'opérateur sans disable-model-invocation: true")
         if origin in ("amont", "npm") and not any((folder / f).is_file() for f in LICENSES):
             out.append(f"{where} copie externe sans fichier de licence")
+    out += router_problems(root, skills)
     if (root / "README.md").is_file() and readme_block(skills) not in (root / "README.md").read_text(encoding="utf-8"):
         out.append("README.md : la liste des skills ne suit pas le catalogue (catalogue.py readme --ecrire)")
     attributes = root / ".gitattributes"
     if folders and (not attributes.is_file() or attributes.read_text(encoding="utf-8") != attributes_text(skills)):
         out.append(".gitattributes : ne suit pas les copies externes du catalogue (catalogue.py attributs --ecrire)")
     return out
+
+
+def router_problems(root: Path, skills: dict) -> list[str]:
+    """The router skill (aiguillage) names every other skill of the operator between backticks: a skill it forgets is
+    a router that lies about what the operator can reach."""
+    entry = skills.get("aiguillage")
+    router = root / "skills" / "aiguillage" / "SKILL.md"
+    if not entry or not copied(entry) or not router.is_file():
+        return []
+    text = router.read_text(encoding="utf-8")
+    return [f"aiguillage : oublie la skill de l'opérateur « {name} »" for name, other in sorted(skills.items())
+            if name != "aiguillage" and "operateur" in (other.get("consommateurs") or []) and f"`{name}`" not in text]
 
 
 def attributes_text(skills: dict) -> str:
