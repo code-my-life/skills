@@ -3,6 +3,14 @@
 Les rondes de la section 2 puisent ici. Dans chaque liste, une question suppose les réponses de celles qui la
 précèdent : pose ensemble celles dont les prérequis sont tranchés. Cherche d'abord dans le dépôt tout ce qui s'y trouve.
 
+## Avant la première question
+
+1. **Le constat, reproduit** : pour un Bug, reproduis-le toi-même et dis ce que tu as vu. S'il ne se reproduit pas,
+   c'est la première question.
+2. **Ce qui existe déjà** : le comportement demandé existe-t-il déjà dans le dépôt, en partie ou ailleurs ? Dis où.
+3. **Les ADR** : relis les « Écartés » des ADR du dépôt (`docs/decisions/`). Une issue qui contredit une ADR le dit,
+   avec sa raison.
+
 ## Commun à tous les types
 
 1. **Le constat** : que se passe-t-il aujourd'hui, et où exactement (écran, fichier, commande) ?
@@ -12,6 +20,13 @@ précèdent : pose ensemble celles dont les prérequis sont tranchés. Cherche d
    documents seulement (Documentation) ?
 4. **Le périmètre** : qu'est-ce qui ne doit pas changer ?
 5. **Les critères** : pour chacun, comment le vérifie-t-on ? Un chiffre, un nom de test ou une capture.
+
+## La ronde Tests (Bug, Interface, Fonctionnalité)
+
+1. **Le point d'entrée** : le plus haut possible (l'écran, la commande, l'API), un seul si on peut.
+2. **Le modèle** : quel test existant du dépôt sert de modèle ? Cite son chemin.
+3. **L'attendu** : chaque test dit une capacité. Son attendu est écrit en dur et tiré de la spécification, jamais
+   recalculé comme le code le calcule.
 
 ## Bug
 
@@ -36,7 +51,10 @@ précèdent : pose ensemble celles dont les prérequis sont tranchés. Cherche d
 ## Fonctionnalité
 
 1. **Le comportement** : les entrées, les sorties, les cas limites, les erreurs.
-2. **Le contrat** : formats de données, API, schémas, compatibilité avec l'existant.
+2. **Le contrat** : formats de données, API, schémas, compatibilité avec l'existant. Pour une interface nouvelle, trois
+   sous-agents en proposent chacun une, radicalement différente. Compare-les par profondeur (ce que l'interface cache),
+   localité (ce qu'un changement touche) et place de la couture (où un test se branche), puis le propriétaire tranche
+   en QCM.
 3. **Les données réelles** : volumes, valeurs extrêmes, valeurs absentes.
 4. **Les tests** : lequel échoue avant le changement, lesquels couvrent les cas limites ?
 
