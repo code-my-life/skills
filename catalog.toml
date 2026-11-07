@@ -656,12 +656,13 @@ chemin = "skills/engineering/prototype"
 [skills.wizard]
 famille = "outils"
 role = "Un script bash qui guide pas à pas une étape que seul le propriétaire peut faire, à la demande."
-origine = "amont"
+origine = "maison"
 licence = "MIT"
 declenchement = "manuel"
 consommateurs = ["operateur"]
+adaptee = true
 
-[skills.wizard.amont]
+[skills.wizard.d_apres]
 depot = "mattpocock/skills"
 ref = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
 branche = "main"

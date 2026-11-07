@@ -118,7 +118,7 @@ dans le fichier `LICENSE` de son dossier.
 - **`etude-externe`** : Étudier un outil externe contre ses sources primaires, verdict par projet, étude gardée. (maison, manuel)
 - **`playwright-cli`** : Piloter un navigateur et tester des pages avec Playwright, en ligne de commande. (microsoft/playwright-cli, auto)
 - **`prototype-logique`** : Valider une règle ou une machine à états en page unique, publiée en artifact privé. (maison, manuel)
-- **`wizard`** : Un script bash qui guide pas à pas une étape que seul le propriétaire peut faire, à la demande. (mattpocock/skills, manuel)
+- **`wizard`** : Un script bash qui guide pas à pas une étape que seul le propriétaire peut faire, à la demande. (maison, manuel)
 - **`write-swift`** : Écrire du Swift moderne : types valeur, concurrence de Swift 6, tests, performance. (emilkowalski/skills, auto)
 - **`writing-for-agents`** : Écrire une skill, un SOUL ou un AGENTS.md : les règles d'écriture pour un agent. (mattpocock/skills, auto)
 

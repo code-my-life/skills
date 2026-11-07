@@ -6,6 +6,9 @@
 # Everything above the "STAGES" marker is the wizard library: do not hand-edit
 # it. Author the per-step stages below the marker.
 
+# SC2317: the library helpers below are called from the stages that run_wizard holds (and from each other), which
+# the linter does not follow after the final `exit`. They are reachable, so this is not a defect.
+# shellcheck disable=SC2317
 set -euo pipefail
 
 # ──────────────────────────────────────────────────────────────────────────
@@ -111,7 +114,7 @@ ask() {
   current=$(_existing "$key" || true)
   # Readline needs the colour codes wrapped in \001..\002 to place the cursor.
   p="  $s$BOLD$e$prompt$s$RESET$e "
-  [[ -n "$current" ]] && p+="$s$DIM$e[Enter keeps current]$s$RESET$e "
+  [[ -n "$current" ]] && p+="$s$DIM${e}[Enter keeps current]$s$RESET$e "
   read -e -r -p "$p" input || rc=1
   if (( rc )) && [[ -z "$input" ]]; then return 1; fi
   [[ -z "$input" && -n "$current" ]] && input="$current"

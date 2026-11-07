@@ -1,6 +1,7 @@
 ---
 name: wizard
 description: Generate an interactive bash wizard that walks a human through steps only they can perform. Use when provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover. Don't invoke this for steps the agent can perform itself.
+disable-model-invocation: true
 ---
 
 # Wizard
@@ -42,3 +43,7 @@ Hold the bar the template sets: open the URL before asking for its value, use `a
 - `chmod +x <script>`.
 - Don't run it end-to-end yourself: it opens browsers and blocks on human input. Trace it statically instead: every value from step 1 is captured and lands where step 1 said, and every `set_secret` name exactly matches a `secrets.*` reference in CI.
 - Tell the user how to run it. If it's a repeatable setup path, commit it and link it from the README so the next person runs the script instead of asking an AI.
+
+---
+
+Adaptée de `wizard` de mattpocock/skills (MIT, Matt Pocock), commit 4ae2317 : déclenchement manuel (`disable-model-invocation: true`), l'agent ne la lance jamais lui-même ; `template.sh` corrigé pour `shellcheck` (SC1087 corrigé, SC2317 écarté avec sa raison).
