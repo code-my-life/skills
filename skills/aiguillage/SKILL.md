@@ -45,6 +45,7 @@ le modèle quand la tâche s'y prête.
 | Situation | Skill |
 |---|---|
 | Avant d'approuver une PR de la factory : fait-elle ce que l'issue demandait ? | `revue-spec` (manuel) |
+| Auditer un projet en clean code et clean architecture | `clean-audit` (auto) |
 | Faire relire la branche en local par Greptile avant le push | `cli-review` (manuel) |
 | Relever les commentaires et les checks d'une PR, puis les traiter | `check-pr` (manuel) |
 | Relire des animations avec un œil exigeant sur le rendu | `review-animations` (manuel) |
