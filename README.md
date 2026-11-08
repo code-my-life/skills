@@ -110,6 +110,7 @@ dans le fichier `LICENSE` de son dossier.
 - **`architecture`** : Trouver où l'architecture d'un dépôt freine les agents, en rapport visuel privé, à la demande. (maison, manuel)
 - **`check-pr`** : Relever les commentaires, les checks et le texte d'une PR, puis les traiter, à la demande. (greptileai/skills, manuel)
 - **`clean-audit`** : Auditer un projet selon Clean Code et Clean Architecture : mesures, constats cités, plan de garde-fous. (maison, auto)
+- **`clean-setup`** : Installer les garde-fous d'un audit clean-audit validé : tests d'architecture, lint, hooks, CI, consignes. (maison, auto)
 - **`cli-review`** : Faire relire la branche en local par le CLI de Greptile avant le push, à la demande. (greptileai/skills, manuel)
 - **`revue-spec`** : Relire une PR de la factory contre son issue avant l'approbation, sans la poster, à la demande. (maison, manuel)
 
