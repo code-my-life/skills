@@ -1,78 +1,78 @@
 ---
 name: clean-audit
-description: "Auditer un projet selon Clean Code et Clean Architecture (Robert C. Martin), sur toute stack : mesures, constats cités par heuristique, plan de garde-fous priorisé. Use when asked to audit code quality or architecture, to find what a project lacks in clean code or clean architecture, or to prepare quality gates (linters, architecture tests, hooks, CI) before installing them."
+description: "Audit a project against Clean Code and Clean Architecture (Robert C. Martin), on any stack: measurements, findings cited by heuristic, prioritized guardrail plan. Use when asked to audit code quality or architecture, to find what a project lacks in clean code or clean architecture, or to prepare quality gates (linters, architecture tests, hooks, CI) before installing them."
 ---
 
 # clean-audit
 
-Produire un document d'audit qui dit où un projet s'écarte de Clean Code et de Clean Architecture, preuves à l'appui,
-et quel garde-fou installer pour chaque écart. L'audit est en lecture seule : la mise en place viendra d'une
-validation du propriétaire sur ce document, jamais de l'audit lui-même.
+Produce an audit document that says where a project departs from Clean Code and Clean Architecture, with evidence,
+and which guardrail to install for each gap. The audit is read-only: installation follows from the owner's validation
+of this document, never from the audit itself.
 
-Chaque constat porte un **verdict**, qui décide de son avenir :
-- **outil** : un programme donne le même verdict pour les mêmes entrées ; candidat à un linter, un test
-  d'architecture, un hook, un check CI ;
-- **signal** : un programme détecte, un humain tranche ; candidat à un rapport consultatif, jamais à une CI bloquante
-  sans tri humain ;
-- **consigne** : pur jugement ; candidat à une ligne de CLAUDE.md, d'AGENTS.md ou d'un skill, jamais à une gate.
+Every finding carries a **verdict**, which decides its future:
+- **tool**: a program returns the same verdict for the same inputs; candidate for a linter, an architecture test, a
+  hook, a CI check;
+- **signal**: a program detects, a human decides; candidate for an advisory report, never for a blocking CI without
+  human triage;
+- **guideline**: pure judgment; candidate for a line in CLAUDE.md, AGENTS.md or a skill, never for a gate.
 
-## Références
+## References
 
-- `references/heuristiques-clean-code.md` : les 66 heuristiques codées du chapitre 17, les seuils chiffrés et les
-  règles des chapitres, chacune avec son verdict. À charger pour la passe code (étape 3).
-- `references/regles-architecture.md` : les 21 règles du graphe de dépendances (SOLID compris), les métriques I/A/D, la hiérarchie de
-  mise en place et les outils par stack. À charger pour la passe architecture (étape 4) et pour le plan (étape 5).
-- `references/calibrage.md` : les seuils comme préférences, le calibrage sur l'existant, le minimum vital d'un petit
-  projet, les tolérances du livre. À charger avant d'écrire le plan (étape 5).
+- `references/clean-code-heuristics.md`: the 66 coded heuristics of chapter 17, the numeric thresholds and the
+  chapter rules, each with its verdict. Load it for the code pass (step 3).
+- `references/architecture-rules.md`: the 21 dependency-graph rules (SOLID included), the I/A/D metrics, the
+  enforcement hierarchy and the tools per stack. Load it for the architecture pass (step 4) and for the plan (step 5).
+- `references/calibration.md`: thresholds as preferences, calibration on the existing code, the bare minimum for a
+  small project, the books' own tolerances. Load it before writing the plan (step 5).
 
-## Déroulé
+## Process
 
-1. **Observer.** La stack (langages, frameworks, gestionnaire de paquets), l'outillage en place (formateur, linter,
-   typecheck, tests, hooks git, CI, consignes d'agents : CLAUDE.md, AGENTS.md, règles), la structure des dossiers et
-   la taille du projet. L'étape est finie quand l'inventaire de l'outillage en place est écrit : l'audit complète
-   l'existant, il ne le redécouvre pas en doublon.
-2. **Mesurer.** Taille des fonctions et des fichiers, profondeur d'imbrication, nombre d'arguments, duplication,
-   couverture si elle existe, et le graphe de dépendances : cycles, sens des arêtes entre couches, I/A/D par
-   composant quand le projet en a. Chaque chiffre vient d'une commande reproductible, notée à côté de lui. L'étape
-   est finie quand chaque mesure du rapport a sa commande.
-3. **Constats code.** Parcourir le code avec le catalogue des heuristiques. Un constat cite : le code de
-   l'heuristique (G5, F1, N5...), un exemple en fichier:ligne, la mesure quand il y en a une, le verdict. L'étape est
-   finie quand chaque heuristique de verdict outil ou signal du catalogue a été considérée sur ce projet : violée
-   avec preuve, respectée, ou sans objet pour cette stack.
-4. **Constats architecture.** Appliquer les 21 règles du graphe, même format : numéro de la règle, arête ou module en
-   cause, verdict. Sur un projet sans couches déclarées, la première fiche du plan sera la déclaration des couches :
-   le mapping chemins vers cercles, validé par le propriétaire.
-5. **Plan.** Une fiche par garde-fou, priorisée par effet sur le projet puis par coût, dans l'ordre de la hiérarchie
-   de mise en place (compilateur, tests d'architecture, hooks et CI, consignes). Une fiche tient en six lignes :
-   - Source : livre, chapitre ou code d'heuristique ;
-   - Règle : l'énoncé précis, seuil calibré sur la mesure de l'étape 2 ;
-   - Outil : le programme qui la vérifie, et sa règle de configuration ;
-   - Où : éditeur, hook d'agent, pre-commit, pre-push, CI ;
-   - Faux positifs attendus : ce que la règle attrapera à tort, et l'échappatoire prévue ;
-   - Coût : mise en place et bruit quotidien estimés.
-   Les constats de verdict consigne vont dans une section à part : le texte prêt à coller dans CLAUDE.md ou
-   AGENTS.md, une ligne par consigne.
-6. **Rendre.** Le document d'audit suit le format ci-dessous, et se termine par la liste de ce que l'audit écarte
-   volontairement (dogme écarté, règles sans objet), pour que le propriétaire voie aussi ce qui a été jugé. Rien ne
-   s'installe : la mise en place attend sa validation fiche par fiche.
+1. **Observe.** The stack (languages, frameworks, package manager), the tooling in place (formatter, linter,
+   typecheck, tests, git hooks, CI, agent instructions: CLAUDE.md, AGENTS.md, rules), the folder structure and the
+   project size. The step is done when the inventory of the tooling in place is written: the audit completes what
+   exists, it does not rediscover it as duplicates.
+2. **Measure.** Function and file sizes, nesting depth, argument counts, duplication, coverage when it exists, and
+   the dependency graph: cycles, edge direction between layers, I/A/D per component when the project has components.
+   Every number comes from a reproducible command, written next to it. The step is done when every measurement in the
+   report has its command.
+3. **Code findings.** Walk the code with the heuristics catalog. A finding cites: the heuristic code (G5, F1, N5...),
+   an example as file:line, the measurement when there is one, the verdict. The step is done when every tool or
+   signal heuristic of the catalog has been considered on this project: violated with evidence, respected, or not
+   applicable to this stack.
+4. **Architecture findings.** Apply the 21 graph rules, same format: rule number, offending edge or module, verdict.
+   On a project without declared layers, the first card of the plan is the layer declaration: the paths-to-circles
+   mapping, validated by the owner.
+5. **Plan.** One card per guardrail, prioritized by effect on the project then by cost, in the order of the
+   enforcement hierarchy (compiler, architecture tests, hooks and CI, guidelines). A card holds six lines:
+   - Source: book, chapter or heuristic code;
+   - Rule: the precise statement, threshold calibrated on the step 2 measurements;
+   - Tool: the program that checks it, and its configuration rule;
+   - Where: editor, agent hook, pre-commit, pre-push, CI;
+   - Expected false positives: what the rule will wrongly catch, and the planned escape hatch;
+   - Cost: estimated setup effort and daily noise.
+   Findings with a guideline verdict go in a section of their own: the text ready to paste into CLAUDE.md or
+   AGENTS.md, one line per guideline.
+6. **Deliver.** The audit document follows the format below, and ends with the list of what the audit deliberately
+   sets aside (dismissed dogma, rules without object), so the owner also sees what was judged. Nothing gets
+   installed: the rollout waits for their validation, card by card.
 
-## Format du document d'audit
+## Audit document format
 
-1. **Contexte** : stack, taille, domaine, ce que le projet fait.
-2. **Outillage en place** : l'inventaire de l'étape 1.
-3. **Mesures** : les chiffres de l'étape 2, chaque chiffre avec sa commande.
-4. **Constats code** : par famille d'heuristiques, du plus grave au plus bénin.
-5. **Constats architecture** : par règle, avec le graphe ou l'extrait qui le montre.
-6. **Plan de mise en place** : les fiches priorisées.
-7. **Consignes** : le texte prêt à coller pour ce qui ne se mesure pas.
-8. **Écarté** : ce que l'audit a jugé sans objet ou dogmatique pour ce projet, et pourquoi.
+1. **Context**: stack, size, domain, what the project does.
+2. **Tooling in place**: the step 1 inventory.
+3. **Measurements**: the step 2 numbers, each with its command.
+4. **Code findings**: by heuristic family, most severe first.
+5. **Architecture findings**: by rule, with the graph or excerpt that shows it.
+6. **Rollout plan**: the prioritized cards.
+7. **Guidelines**: the ready-to-paste text for what cannot be measured.
+8. **Set aside**: what the audit judged without object or dogmatic for this project, and why.
 
-## Garde-fous
+## Guardrails
 
-- **Calibrer, jamais imposer** : un seuil se cale sur la mesure de l'existant et bloque la régression sur les lignes
-  modifiées ; la réécriture de l'existant est hors du périmètre d'un garde-fou (voir calibrage.md).
-- **Respecter les verdicts** : un signal entre en rapport consultatif, une consigne en texte d'agent ; seule une
-  règle de verdict outil peut bloquer un commit ou une CI.
-- **Minimum vital d'abord** : sur un petit projet, trois fiches suffisent souvent : pas de cycles, le cœur métier
-  sans imports de framework, de base de données ni de HTTP, un point d'entrée qui câble tout.
-- **Citer** : un constat sans code d'heuristique, sans fichier:ligne ou sans commande n'entre pas dans l'audit.
+- **Calibrate, never impose**: a threshold is set from the measurement of the existing code and blocks regression on
+  modified lines; rewriting the existing code is outside the scope of a guardrail (see calibration.md).
+- **Respect the verdicts**: a signal goes into an advisory report, a guideline into agent text; only a tool-verdict
+  rule may block a commit or a CI.
+- **Bare minimum first**: on a small project, three cards are often enough: no cycles, the business core free of
+  framework, database and HTTP imports, one entry point that wires everything.
+- **Cite**: a finding without a heuristic code, a file:line or a command does not enter the audit.
