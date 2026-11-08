@@ -523,6 +523,14 @@ licence = "MIT"
 declenchement = "auto"
 consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
 
+[skills.clean-setup]
+famille = "revue"
+role = "Installer les garde-fous d'un audit clean-audit validé : tests d'architecture, lint, hooks, CI, consignes."
+origine = "maison"
+licence = "MIT"
+declenchement = "auto"
+consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
+
 [skills.check-pr]
 famille = "revue"
 role = "Relever les commentaires, les checks et le texte d'une PR, puis les traiter, à la demande."
