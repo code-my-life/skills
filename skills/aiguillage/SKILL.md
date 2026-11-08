@@ -55,7 +55,6 @@ le modèle quand la tâche s'y prête.
 |---|---|
 | Concevoir, critiquer ou polir une interface | `impeccable` (auto) |
 | La finition d'un composant, ses détails invisibles | `emil-design-eng` (auto) |
-| Une page web sans effet générique | `design-taste-frontend` (auto) |
 | Casser une interface avec des données extrêmes | `break-ui` (auto) |
 | Faire qu'une application web se sente native sur téléphone | `mobile-native` (auto) |
 | Toasts React | `ask-sonner` (auto) |

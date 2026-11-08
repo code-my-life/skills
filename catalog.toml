@@ -321,20 +321,6 @@ ref = "c8a79627b59d72d764d6ab6f2c87c09a48169833"
 branche = "main"
 chemin = "skills/prototype"
 
-[skills.design-taste-frontend]
-famille = "interface"
-role = "Direction artistique d'une page web sans effet générique, avec un inspecteur dans le navigateur."
-origine = "amont"
-licence = "MIT"
-copie = false  # ses photos (Wikimedia Commons, Unsplash) et ses icônes ont leur propre licence
-declenchement = "auto"
-consommateurs = ["operateur", "lane-claude", "lane-opencode", "hermes:default"]
-
-[skills.design-taste-frontend.amont]
-depot = "Leonxlnx/taste-skill"
-ref = "v2.5.0"
-chemin = "skills/taste-skill"
-
 [skills.impeccable]
 famille = "interface"
 role = "Concevoir, critiquer et polir une interface, du design system aux détails."

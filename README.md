@@ -82,7 +82,6 @@ dans le fichier `LICENSE` de son dossier.
 
 - **`ask-sonner`** : Guide de Sonner, la bibliothèque de toasts React : mise en place, style, dépannage. (emilkowalski/skills, auto)
 - **`break-ui`** : Casser une interface avec des données extrêmes, et rendre chaque défaut avec sa correction. (emilkowalski/skills, auto)
-- **`design-taste-frontend`** : Direction artistique d'une page web sans effet générique, avec un inspecteur dans le navigateur. (Leonxlnx/taste-skill, déclarée, auto)
 - **`emil-design-eng`** : La finition d'une interface selon Emil Kowalski : composants, animations, détails invisibles. (emilkowalski/skills, auto)
 - **`impeccable`** : Concevoir, critiquer et polir une interface, du design system aux détails. (npm impeccable, déclarée, auto)
 - **`mobile-native`** : Faire qu'une application web se sente native sur un téléphone, réglage par réglage. (emilkowalski/skills, auto)

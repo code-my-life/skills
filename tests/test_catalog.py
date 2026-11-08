@@ -296,8 +296,8 @@ class VraiCatalogueTest(unittest.TestCase):
     def test_les_listes_lues_par_la_factory(self):
         skills = cat.load()
         self.assertIn("factory-author-proof", cat.names_for(skills, "hermes:coder"))
-        self.assertIn("design-taste-frontend", cat.names_for(skills, "operateur", "declarees"))
-        self.assertNotIn("design-taste-frontend", cat.names_for(skills, "operateur", "copiees"))
+        self.assertIn("impeccable", cat.names_for(skills, "operateur", "declarees"))
+        self.assertNotIn("impeccable", cat.names_for(skills, "operateur", "copiees"))
         self.assertIn("factory-nouveau-depot", cat.manual(skills))
         self.assertNotIn("factory-nouveau-depot", cat.names_for(skills, "lane-claude"))
         # Emil Kowalski's skills leave the root profile of Hermès only, until the owner decides (#5).
