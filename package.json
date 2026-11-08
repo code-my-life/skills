@@ -1,6 +1,6 @@
 {
   "name": "@code-my-life/skills",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "private": true,
   "description": "Les skills de tous les agents de Code My Life, et leur catalogue (catalog.toml)."
 }
