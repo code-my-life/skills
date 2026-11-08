@@ -17,7 +17,9 @@ Consequence for an audit: a threshold is proposed with its measurement on the re
 
 1. Measure the current distribution (function length, arguments, nesting, D per component).
 2. Set the threshold at the level that blocks regression, not at the book's level: if the 95th percentile of
-   functions is 35 lines, the starting threshold is 35, not 20; it will come down as the code comes down.
+   functions is 35 lines, the starting threshold is 35, not 20; it will come down as the code comes down. Compute
+   the percentile on the healthy mass: leave out the very outliers the audit flags for fixing, otherwise they set
+   the bar and the threshold would bless them.
 3. Check added and modified lines only. The existing code does not get rewritten for a guardrail: that is the Boy
    Scout rule (leave it a little cleaner than found), not a rewrite campaign.
 4. Plan the escape hatch: every tooled rule says how it gets disabled locally (a named disable comment, with a
