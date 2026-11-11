@@ -17,9 +17,25 @@ précèdent : pose ensemble celles dont les prérequis sont tranchés. Cherche d
 2. **L'impact** : pour qui, et qu'est-ce que cela empêche ou coûte ?
 3. **Le type** : une référence existe-t-elle (Bug), ou est-ce une apparence (Interface), une logique (Fonctionnalité),
    une cause inconnue (Diagnostic), des tests (Tests), du ménage sans changement de comportement (Maintenance), des
-   documents seulement (Documentation) ?
+   documents seulement (Documentation), ou le texte d'une skill de code-my-life/skills (Skill, dans ce dépôt
+   seulement) ?
 4. **Le périmètre** : qu'est-ce qui ne doit pas changer ?
 5. **Les critères** : pour chacun, comment le vérifie-t-on ? Un chiffre, un nom de test ou une capture.
+
+## Skill
+
+1. **La skill et le fichier** : quelle skill de code-my-life/skills, et quel fichier (`skills/<nom>/SKILL.md` ou une
+   de ses références) ? Une copie d'un amont (origine `amont` au catalogue) ne change pas par une issue Skill : elle
+   suit son amont.
+2. **Le texte d'origine** : le passage exact du fichier sur main, d'un seul tenant, copié tel quel ; « aucun » pour une
+   skill nouvelle. Une autre issue Skill ouverte vise-t-elle le même passage ?
+3. **Le texte proposé** : le passage qui le remplace, une seule fois ; rien d'autre ne change dans ce fichier. Le
+   texte d'un second fichier de skill est une autre issue, mais la PR porte aussi ce que le dépôt exige autour : la
+   version de `package.json` et, pour une skill nouvelle, son entrée dans `catalog.toml`, la liste du `README.md`
+   (`catalogue.py readme --ecrire`) et, pour une skill des séances de l'opérateur, `skills/aiguillage/SKILL.md`.
+4. **La raison** : pourquoi ce changement, en une ou deux phrases.
+5. **La preuve** : la carte, la séance ou le verdict qui montre le blocage ou le besoin.
+6. **La version** : `patch` pour un texte changé, `minor` pour une skill nouvelle.
 
 ## La ronde Tests (Bug, Interface, Fonctionnalité)
 
