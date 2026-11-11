@@ -86,7 +86,8 @@ publie pas une seconde fois. Une question ouverte (`unknown`) se tranche au gril
 
 **Le type** : une story de logique, d'API ou de données est une Fonctionnalité ; une story d'apparence, une Interface
 (sa maquette validée reste exigée) ; un `bug`, un Bug ; la story de ménage de fin d'epic (« Refactor sweep »), une
-Maintenance. Une story qui touche deux dépôts se coupe en deux issues : une carte travaille dans un seul dépôt.
+Maintenance. Une story qui touche deux dépôts se coupe d'abord chez Sofia en deux entrées, une par dépôt, reliées
+par `after` quand l'une attend l'autre : une carte travaille dans un seul dépôt, et chaque entrée porte sa propre issue.
 
 **Les sections**, toutes en français, chaque terme de BMAD expliqué à sa première apparition :
 
@@ -123,7 +124,8 @@ l'organisation (`gh api orgs/code-my-life/issue-types`) ; sinon, demande au prop
 
 1. Écris le corps dans un fichier du scratchpad, puis vérifie-le exactement comme l'intake le fera :
    `python3 ~/perso/hermes-software-factory/scripts/factory-issue-check.py <type> <fichier>`. Il doit répondre
-   « prête ». Une issue Epic ou Task n'a pas de type de la factory : elle ne passe pas ce contrôle.
+   « prête ». Seules l'issue d'un epic et celle d'un spike ou d'une étape humaine, sans label `type:*`, échappent
+   à ce contrôle : un type de la factory y reste soumis, même quand son type natif est Task.
 2. Montre l'issue au propriétaire avant de la créer, sauf s'il a demandé de la créer directement.
 3. Crée-la avec son compte, le label du type et son type natif :
    `env -u GH_TOKEN gh issue create --repo code-my-life/<dépôt> --title "<titre>" --label type:<type> --type <type natif> --body-file <fichier>`.
