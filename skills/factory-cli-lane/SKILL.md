@@ -2,7 +2,7 @@
 name: factory-cli-lane
 description: "Lane d'implémentation déléguée à un CLI externe (Claude Code via claude -p, OpenCode via opencode run) : Hermès reste propriétaire de la carte, le CLI est une entrée non fiable, Hermès relance les tests et fait le handoff."
 version: 0.1.0
-author: Clément Devillez (code-my-life) + Hermès Agent
+author: code-my-life + Hermès Agent
 license: MIT
 platforms: [linux]
 metadata:

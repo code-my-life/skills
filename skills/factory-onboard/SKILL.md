@@ -2,7 +2,7 @@
 name: factory-onboard
 description: "Préparer un repo pour la factory : clone Linux, projet Hermès lié au board, hermes verify, AGENTS.md, vérification des CLI, graphe Graphify, blocage si un outil ou une clé manque. Rend la factory agnostique à la stack."
 version: 0.1.0
-author: Clément Devillez (code-my-life) + Hermès Agent
+author: code-my-life + Hermès Agent
 license: MIT
 platforms: [linux]
 metadata:

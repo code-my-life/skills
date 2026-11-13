@@ -2,7 +2,7 @@
 name: motion-graph
 description: "Graphe animé d'une interface React (ligne d'usine, pipeline, flux, carte de dépendances) : boîtes reliées par des courbes, une carte qui voyage sur les liens, des comètes de données, zoom au doigt, avec Motion et Primer. Règles validées par le propriétaire sur la ligne de factory-live (ADR 0010), techniques, pièges et contrôles avant PR. Use when building or changing an animated graph, flow, pipeline or node-and-edge view, connectors with moving data, or a zoomable canvas in a React app."
 version: 0.1.2
-author: Clément Devillez (code-my-life) + Claude Code
+author: code-my-life + Claude Code
 license: MIT
 platforms: [linux]
 metadata:
