@@ -2,7 +2,7 @@
 name: factory-brief
 description: "Transformer une issue GitHub en brief exécutable et en graphe de cartes Kanban (implémentation, release). La gate et la release sont des scripts qui lisent ce brief. Coordinateur uniquement."
 version: 0.1.0
-author: Clément Devillez (code-my-life) + Hermès Agent
+author: code-my-life + Hermès Agent
 license: MIT
 platforms: [linux]
 metadata:
@@ -138,7 +138,7 @@ La revue n'est pas une carte : l'implémenteur appelle `kanban_request_review` *
 - `base_commit` et `branch_name` dans la section « Base » ;
 - le test fail-first nommé (section « Test fail-first », champ « nom », le nom exact du cas), sauf pour une PR de tests (`test_only: true`), jugée par le rejeu des sabotages de l'auteur, et pour les types qui ont leur propre preuve (maintenance, documentation, skill : tableau de la section 1bis).
 
-Sans ces champs, `coordinator-guard` refuse la carte ; un brief que la gate ne peut pas lire lui fait bloquer la carte pour Clément.
+Sans ces champs, `coordinator-guard` refuse la carte ; un brief que la gate ne peut pas lire lui fait bloquer la carte pour le propriétaire.
 
 ## 4. Terminer
 

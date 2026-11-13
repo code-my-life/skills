@@ -2,7 +2,7 @@
 name: factory-author-proof
 description: "Preuve d'auteur : test qui échoue sur le commit de base, correctif minimal, test qui passe, mutation check, preuves sur disque, handoff vers la gate scriptée. Pour toute carte d'implémentation."
 version: 0.1.0
-author: Clément Devillez (code-my-life) + Hermès Agent
+author: code-my-life + Hermès Agent
 license: MIT
 platforms: [linux]
 metadata:
@@ -98,7 +98,7 @@ Le type du brief fixe la preuve :
      ## Ce qui n'est pas prouvé
      ## Version
      ```
-     plus la section du type : `## Reproduction` (bug), `## Captures` (interface : les captures refaites, avant et après), `## Sabotages` (tests), `## Invariant` (maintenance), `## Documents` (documentation). **Une ligne par critère du brief**, avec son numéro : la gate et le job « Conventions » refusent une PR à laquelle il en manque une. « non prouvé » se dit, il ne se tait pas. La PR reste en brouillon tant que la gate ne l'a pas validée : c'est elle qui la passe en « prête » et demande la revue de Clément.
+     plus la section du type : `## Reproduction` (bug), `## Captures` (interface : les captures refaites, avant et après), `## Sabotages` (tests), `## Invariant` (maintenance), `## Documents` (documentation). **Une ligne par critère du brief**, avec son numéro : la gate et le job « Conventions » refusent une PR à laquelle il en manque une. « non prouvé » se dit, il ne se tait pas. La PR reste en brouillon tant que la gate ne l'a pas validée : c'est elle qui la passe en « prête » et demande la revue du propriétaire.
    - **Un visuel dans « Ce qui a été fait »** (d'après `pr` de mattpocock/skills) : le plus petit qui montre le
      changement, en bloc de texte : un arbre de composants, le diff d'un arbre de fichiers ou un arbre d'appels. Aucune
      règle de la gate ne le vérifie.
@@ -108,7 +108,7 @@ Le type du brief fixe la preuve :
 
 ## Si ta carte revient de la revue
 
-La gate scriptée (ou Clément sur la PR) t'a renvoyé la carte. Le dernier commentaire de `factory-gate` dans `kanban_show()` donne **toutes** les règles rouges du verdict, avec pour chacune les faits, quoi faire et l'extrait de log : corrige-les toutes dans le même commit (ADR 0019). Une demande de Clément donne le lien de sa revue. Ce que la gate vérifie, dans cet ordre, en jugeant chaque règle :
+La gate scriptée (ou le propriétaire sur la PR) t'a renvoyé la carte. Le dernier commentaire de `factory-gate` dans `kanban_show()` donne **toutes** les règles rouges du verdict, avec pour chacune les faits, quoi faire et l'extrait de log : corrige-les toutes dans le même commit (ADR 0019). Une demande du propriétaire donne le lien de sa revue. Ce que la gate vérifie, dans cet ordre, en jugeant chaque règle :
 
 1. **PR** : une PR ouverte par l'App, sur la branche nommée par le brief (`branch_name`) ; brief typé : **Type**, la branche, le titre, `Fixes #<n>`, les sections et une ligne de preuve par critère (corrige avec `gh pr edit --title` ou `--body-file`, sans nouveau commit) ; **Demande de changements** : si la dernière décision du propriétaire est une demande de changements sur la tête de la PR, la gate reste rouge tant que tu n'as pas poussé de nouveau commit (ADR 0020) ;
 2. **Fraîcheur** : `main` incluse (la gate met elle-même la branche à jour quand c'est possible ; en cas de conflit, `git merge origin/main`) ;
@@ -120,6 +120,6 @@ La gate scriptée (ou Clément sur la PR) t'a renvoyé la carte. Le dernier comm
 8. **Build hors ligne** : le build du projet sans réseau ;
 9. **Couverture du diff** : chaque ligne exécutable que tu ajoutes ou modifies est exécutée par au moins un test.
 
-Reproduis d'abord la signature sur ta branche (`evidence/07-regression-repro.txt`), corrige, pousse, puis **toujours** un nouveau `kanban_request_review` sans reviewer, avec `metadata.review_iteration` incrémenté. Au 3e rouge de suite, la gate bloque la carte pour Clément.
+Reproduis d'abord la signature sur ta branche (`evidence/07-regression-repro.txt`), corrige, pousse, puis **toujours** un nouveau `kanban_request_review` sans reviewer, avec `metadata.review_iteration` incrémenté. Au 3e rouge de suite, la gate bloque la carte pour le propriétaire.
 
 **Une carte, une branche, une PR.** Après un rouge, corrige par de **nouveaux commits** sur la branche du brief : sa PR se met à jour seule. Jamais de rebase ni de force push d'une branche déjà poussée ; pour retirer un commit déjà poussé, `git revert`. N'ouvre jamais de seconde PR sous un autre nom de branche : la gate la rejette, et l'ancienne PR restée ouverte ne pourrait plus être fermée sans risque (hermes-software-factory#16).

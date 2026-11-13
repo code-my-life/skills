@@ -2,7 +2,7 @@
 name: factory-diagnostic
 description: "Procédure de la carte Diagnostic : une boucle qui va au rouge sur le symptôme exact, la repro réduite, 3 à 5 hypothèses réfutables, une sonde par prédiction, puis un commentaire de carte (cause, reproduction, test rouge proposé, hypothèses). Lecture seule, sans correctif. Pour toute carte « diagnostic <repo>#<n> »."
 version: 0.1.0
-author: Clément Devillez (code-my-life) + Hermès Agent
+author: code-my-life + Hermès Agent
 license: MIT
 platforms: [linux]
 metadata:
